@@ -1,10 +1,17 @@
 syntax = "proto3";
 
-package loan;
+package loans;
 
-import "google/protobuf/timestamp.proto";
+option go_package = "api/proto/loan";
 
-option go_package = "loan_service/api/proto/loan";
+// -------------------- Errors --------------------
+
+message LoanServiceError {
+  int32 code = 1;
+  string description = 2;
+}
+
+// -------------------- Enums --------------------
 
 enum ApplicationType {
   APPLICATION_TYPE_UNSPECIFIED = 0;
@@ -27,147 +34,205 @@ enum LoanStatus {
   LOAN_STATUS_OVERDUE = 3;
 }
 
-message Application {
-  int64 id = 1;
-  int64 user_id = 2;
-  ApplicationType type = 3;
-  string vehicle_vin = 4;
-  string vehicle_name = 5;
-  string price = 6;
-  string down_payment = 7;
-  string net_price = 8;
-  string margin_rate = 9;
-  int32 term_months = 10;
-  string monthly_payment = 11;
-  ApplicationStatus status = 12;
-  google.protobuf.Timestamp created_at = 13;
-  google.protobuf.Timestamp updated_at = 14;
+enum PaymentMethod {
+  PAYMENT_METHOD_UNSPECIFIED = 0;
+  PAYMENT_METHOD_WALLET = 1;
+  PAYMENT_METHOD_CARD = 2;
+  PAYMENT_METHOD_QR = 3;
+  PAYMENT_METHOD_AUTOPAY = 4;
 }
 
-message Loan {
-  int64 id = 1;
-  int64 application_id = 2;
-  int64 user_id = 3;
-  string vehicle_vin = 4;
-  string amount = 5;
-  int32 term_months = 6;
-  string monthly_payment = 7;
-  string remaining_balance = 8;
-  LoanStatus status = 9;
-  google.protobuf.Timestamp created_at = 10;
+enum PaymentStatus {
+  PAYMENT_STATUS_UNSPECIFIED = 0;
+  PAYMENT_STATUS_PENDING = 1;
+  PAYMENT_STATUS_CONFIRMED = 2;
+  PAYMENT_STATUS_FAILED = 3;
 }
 
-message Payment {
-  int64 id = 1;
-  int64 loan_id = 2;
-  google.protobuf.Timestamp payment_date = 3;
-  string amount = 4;
-  string method = 5;
-  string status = 6;
-  string transaction_id = 7;
-  google.protobuf.Timestamp created_at = 8;
-}
-
+// -------------------- Core models --------------------
 message Vehicle {
   string vin = 1;
   string name = 2;
-  string price = 3;
-  string availability = 4;
+  int64 price = 3;
+  string currency_code = 4; // "TJS", "USD"
 }
 
+message LoanApplication {
+  string id = 1;
+  string user_id = 2;
+  ApplicationType type = 3;
+  string vehicle_vin = 4;
+  string vehicle_name = 5;
+  string currency_code = 6;
+  int64 price = 7;
+  int64 down_payment = 8;
+  int64 net_price = 9;
+  double margin_rate = 10;
+  int32 term_months = 11;
+  int64 monthly_payment = 12;
+  ApplicationStatus status = 13;
+  string created_at = 14;
+  string updated_at = 15;
+}
+
+message Loan {
+  string id = 1;
+  string application_id = 2;
+  string user_id = 3;
+  string currency_code = 4;
+  string vehicle_vin = 5;
+  int64 amount = 6;
+  int32 term_months = 7;
+  int64 monthly_payment = 8;
+  int64 remaining_balance = 9;
+  LoanStatus status = 10;
+  string created_at = 11;
+}
+
+message Payment {
+  string id = 1;
+  string loan_id = 2;
+  string currency_code = 3;
+  string payment_date = 4;
+  int64 amount = 5;
+  PaymentMethod method = 6;
+  PaymentStatus status = 7;
+  string transaction_id = 8;
+  string created_at = 9;
+}
+
+// -------------------- Pagination --------------------
+
+message PageRequest {
+  int32 page = 1;
+  int32 limit = 2;
+}
+
+message PageResponse {
+  int32 current_page = 1;
+  int32 limit = 2;
+  int32 total_items = 3;
+  int32 total_pages = 4;
+}
+
+// -------------------- Requests / Responses --------------------
+
+//Application
 message CreateApplicationRequest {
-  int64 user_id = 1;
+  string user_id = 1;
   ApplicationType type = 2;
   string vehicle_vin = 3;
   string vehicle_name = 4;
-  string price = 5;
-  string down_payment = 6;
-  string margin_rate = 7;
+  string currency_code = 5;
+  int64 price_minor = 6;
+  int64 down_payment_minor = 7;
   int32 term_months = 8;
-  string monthly_payment = 9;
+  double margin_rate = 9;
 }
 message CreateApplicationResponse {
-  Application application = 1;
+  LoanApplication application = 1;
+  LoanServiceError loan_service_error = 100;
+}
+message GetApplicationRequest {
+  string id = 1;
+}
+message GetApplicationResponse {
+  LoanApplication application = 1;
+  LoanServiceError loan_service_error = 100;
 }
 
 message ListApplicationsRequest {
-  int64 user_id = 1;
+  string user_id = 1;
+  PageRequest page = 2;
 }
+
 message ListApplicationsResponse {
-  repeated Application applications = 1;
+  repeated LoanApplication applications = 1;
+  PageResponse page = 2;
+  LoanServiceError loan_service_error = 100;
 }
 
-message GetApplicationRequest {
-  int64 application_id = 1;
-}
-message GetApplicationResponse {
-  Application application = 1;
-}
-
-message ListVehiclesRequest {
-  string query = 1; // optional search/filter
-}
+message ListVehiclesRequest {}
 message ListVehiclesResponse {
   repeated Vehicle vehicles = 1;
+  LoanServiceError loan_service_error = 100;
 }
 
+// Calculator
 message CalculateRequest {
-  string price = 1;
-  string down_payment = 2;
-  int32 term_months = 3;
-  string margin_rate = 4;
+  string currency_code = 1;
+  int64 price_minor = 2;
+  int64 down_payment_minor = 3;
+  int32 term_months = 4;
+  double margin_rate = 5;
 }
 message CalculateResponse {
-  string net_price = 1;
-  string margin_total = 2;
-  string total = 3;
-  string monthly_payment = 4;
+  int64 net_price_minor = 1;
+  int64 monthly_payment_minor = 2;
+  int64 total_amount_minor = 3;
+  LoanServiceError loan_service_error = 100;
 }
 
-message ListLoansRequest {
-  int64 user_id = 1;
-}
-message ListLoansResponse {
-  repeated Loan loans = 1;
-}
-
+// Loans
 message GetLoanRequest {
-  int64 loan_id = 1;
+  string id = 1;
 }
 message GetLoanResponse {
   Loan loan = 1;
+  LoanServiceError loan_service_error = 100;
 }
 
+message ListLoansRequest {
+  string user_id = 1;
+  PageRequest page = 2;
+}
+message ListLoansResponse {
+  repeated Loan loans = 1;
+  PageResponse page = 2;
+  LoanServiceError loan_service_error = 100;
+}
+
+// Payments
 message CreatePaymentRequest {
-  int64 loan_id = 1;
-  string amount = 2;
-  string method = 3;
-  string idempotency_key = 4;
+  string loan_id = 1;
+  int64 amount = 3;
+
+  PaymentMethod method = 4;
 }
 message CreatePaymentResponse {
   Payment payment = 1;
+  LoanServiceError loan_service_error = 100;
 }
 
 message ListPaymentsRequest {
-  int64 loan_id = 1;
+  string loan_id = 1;
+  PageRequest page = 2;
 }
 message ListPaymentsResponse {
   repeated Payment payments = 1;
+  PageResponse page = 2;
+  LoanServiceError loan_service_error = 100;
 }
 
-// ===== Service =====
-service LoansService {
-  rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse);
-  rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse);
-  rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse);
+// -------------------- Service --------------------
 
+service LoansService {
+  // Applications
+  rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse);
+  rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse);
+  rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse);
+
+  // Vehicles
   rpc ListVehicles(ListVehiclesRequest) returns (ListVehiclesResponse);
 
+  // Pricing calculator
   rpc Calculate(CalculateRequest) returns (CalculateResponse);
 
-  rpc ListLoans(ListLoansRequest) returns (ListLoansResponse);
+  // Loans
   rpc GetLoan(GetLoanRequest) returns (GetLoanResponse);
+  rpc ListLoans(ListLoansRequest) returns (ListLoansResponse);
 
+  // Payments
   rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
   rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }
