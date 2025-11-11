@@ -1,0 +1,29 @@
+server:
+  grpc_port: ":50051"
+
+database: 
+  host: "localhost"
+  port: "5432"
+  user: "postgres"
+  password: "password"
+  dbname: "asr_leasing"
+  sslmode: "disable"
+
+rabbitmq:
+  host: "localhost"
+  port: "5672"
+  user: "guest"
+  password: "guest"
+  queue_names: 
+    - "notification"
+
+clients:
+  koinot_auto:
+    base_url: "http://api.koinot-auto.tj/v1"
+    token: "1c-koinot-auto-token"
+    timeout: "5s"
+
+  asr_leasing: 
+    base_url: "http://api.asr-leasing.tj/v1"
+    token: "1c-asr-leasing-token"
+    timeout: "10s"

@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package loan;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "loan_service/api/proto/loan";
+
+enum ApplicationType {
+  APPLICATION_TYPE_UNSPECIFIED = 0;
+  APPLICATION_TYPE_AUTO = 1;
+  APPLICATION_TYPE_PERSONAL = 2;
+}
+
+enum ApplicationStatus {
+  APPLICATION_STATUS_UNSPECIFIED = 0;
+  APPLICATION_STATUS_NEW = 1;
+  APPLICATION_STATUS_REVIEW = 2;
+  APPLICATION_STATUS_APPROVED = 3;
+  APPLICATION_STATUS_REJECTED = 4;
+}
+
+enum LoanStatus {
+  LOAN_STATUS_UNSPECIFIED = 0;
+  LOAN_STATUS_ACTIVE = 1;
+  LOAN_STATUS_PAID = 2;
+  LOAN_STATUS_OVERDUE = 3;
+}
+
+message Application {
+  int64 id = 1;
+  int64 user_id = 2;
+  ApplicationType type = 3;
+  string vehicle_vin = 4;
+  string vehicle_name = 5;
+  string price = 6;
+  string down_payment = 7;
+  string net_price = 8;
+  string margin_rate = 9;
+  int32 term_months = 10;
+  string monthly_payment = 11;
+  ApplicationStatus status = 12;
+  google.protobuf.Timestamp created_at = 13;
+  google.protobuf.Timestamp updated_at = 14;
+}
+
+message Loan {
+  int64 id = 1;
+  int64 application_id = 2;
+  int64 user_id = 3;
+  string vehicle_vin = 4;
+  string amount = 5;
+  int32 term_months = 6;
+  string monthly_payment = 7;
+  string remaining_balance = 8;
+  LoanStatus status = 9;
+  google.protobuf.Timestamp created_at = 10;
+}
+
+message Payment {
+  int64 id = 1;
+  int64 loan_id = 2;
+  google.protobuf.Timestamp payment_date = 3;
+  string amount = 4;
+  string method = 5;
+  string status = 6;
+  string transaction_id = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+message Vehicle {
+  string vin = 1;
+  string name = 2;
+  string price = 3;
+  string availability = 4;
+}
+
+message CreateApplicationRequest {
+  int64 user_id = 1;
+  ApplicationType type = 2;
+  string vehicle_vin = 3;
+  string vehicle_name = 4;
+  string price = 5;
+  string down_payment = 6;
+  string margin_rate = 7;
+  int32 term_months = 8;
+  string monthly_payment = 9;
+}
+message CreateApplicationResponse {
+  Application application = 1;
+}
+
+message ListApplicationsRequest {
+  int64 user_id = 1;
+}
+message ListApplicationsResponse {
+  repeated Application applications = 1;
+}
+
+message GetApplicationRequest {
+  int64 application_id = 1;
+}
+message GetApplicationResponse {
+  Application application = 1;
+}
+
+message ListVehiclesRequest {
+  string query = 1; // optional search/filter
+}
+message ListVehiclesResponse {
+  repeated Vehicle vehicles = 1;
+}
+
+message CalculateRequest {
+  string price = 1;
+  string down_payment = 2;
+  int32 term_months = 3;
+  string margin_rate = 4;
+}
+message CalculateResponse {
+  string net_price = 1;
+  string margin_total = 2;
+  string total = 3;
+  string monthly_payment = 4;
+}
+
+message ListLoansRequest {
+  int64 user_id = 1;
+}
+message ListLoansResponse {
+  repeated Loan loans = 1;
+}
+
+message GetLoanRequest {
+  int64 loan_id = 1;
+}
+message GetLoanResponse {
+  Loan loan = 1;
+}
+
+message CreatePaymentRequest {
+  int64 loan_id = 1;
+  string amount = 2;
+  string method = 3;
+  string idempotency_key = 4;
+}
+message CreatePaymentResponse {
+  Payment payment = 1;
+}
+
+message ListPaymentsRequest {
+  int64 loan_id = 1;
+}
+message ListPaymentsResponse {
+  repeated Payment payments = 1;
+}
+
+// ===== Service =====
+service LoansService {
+  rpc CreateApplication(CreateApplicationRequest) returns (CreateApplicationResponse);
+  rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse);
+  rpc GetApplication(GetApplicationRequest) returns (GetApplicationResponse);
+
+  rpc ListVehicles(ListVehiclesRequest) returns (ListVehiclesResponse);
+
+  rpc Calculate(CalculateRequest) returns (CalculateResponse);
+
+  rpc ListLoans(ListLoansRequest) returns (ListLoansResponse);
+  rpc GetLoan(GetLoanRequest) returns (GetLoanResponse);
+
+  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
+}
