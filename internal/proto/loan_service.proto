@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package loans;
+package proto;
 
-option go_package = "api/proto/loan";
+option go_package = "internal/proto";
 
 // -------------------- Errors --------------------
 
@@ -195,8 +195,8 @@ message ListLoansResponse {
 // Payments
 message CreatePaymentRequest {
   string loan_id = 1;
+  string currency_code = 2;
   int64 amount = 3;
-
   PaymentMethod method = 4;
 }
 message CreatePaymentResponse {
