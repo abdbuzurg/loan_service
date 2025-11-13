@@ -21,269 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ApplicationType int32
-
-const (
-	ApplicationType_APPLICATION_TYPE_UNSPECIFIED ApplicationType = 0
-	ApplicationType_APPLICATION_TYPE_AUTO        ApplicationType = 1
-	ApplicationType_APPLICATION_TYPE_PERSONAL    ApplicationType = 2
-)
-
-// Enum value maps for ApplicationType.
-var (
-	ApplicationType_name = map[int32]string{
-		0: "APPLICATION_TYPE_UNSPECIFIED",
-		1: "APPLICATION_TYPE_AUTO",
-		2: "APPLICATION_TYPE_PERSONAL",
-	}
-	ApplicationType_value = map[string]int32{
-		"APPLICATION_TYPE_UNSPECIFIED": 0,
-		"APPLICATION_TYPE_AUTO":        1,
-		"APPLICATION_TYPE_PERSONAL":    2,
-	}
-)
-
-func (x ApplicationType) Enum() *ApplicationType {
-	p := new(ApplicationType)
-	*p = x
-	return p
-}
-
-func (x ApplicationType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ApplicationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_proto_loan_service_proto_enumTypes[0].Descriptor()
-}
-
-func (ApplicationType) Type() protoreflect.EnumType {
-	return &file_internal_proto_loan_service_proto_enumTypes[0]
-}
-
-func (x ApplicationType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ApplicationType.Descriptor instead.
-func (ApplicationType) EnumDescriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{0}
-}
-
-type ApplicationStatus int32
-
-const (
-	ApplicationStatus_APPLICATION_STATUS_UNSPECIFIED ApplicationStatus = 0
-	ApplicationStatus_APPLICATION_STATUS_NEW         ApplicationStatus = 1
-	ApplicationStatus_APPLICATION_STATUS_REVIEW      ApplicationStatus = 2
-	ApplicationStatus_APPLICATION_STATUS_APPROVED    ApplicationStatus = 3
-	ApplicationStatus_APPLICATION_STATUS_REJECTED    ApplicationStatus = 4
-)
-
-// Enum value maps for ApplicationStatus.
-var (
-	ApplicationStatus_name = map[int32]string{
-		0: "APPLICATION_STATUS_UNSPECIFIED",
-		1: "APPLICATION_STATUS_NEW",
-		2: "APPLICATION_STATUS_REVIEW",
-		3: "APPLICATION_STATUS_APPROVED",
-		4: "APPLICATION_STATUS_REJECTED",
-	}
-	ApplicationStatus_value = map[string]int32{
-		"APPLICATION_STATUS_UNSPECIFIED": 0,
-		"APPLICATION_STATUS_NEW":         1,
-		"APPLICATION_STATUS_REVIEW":      2,
-		"APPLICATION_STATUS_APPROVED":    3,
-		"APPLICATION_STATUS_REJECTED":    4,
-	}
-)
-
-func (x ApplicationStatus) Enum() *ApplicationStatus {
-	p := new(ApplicationStatus)
-	*p = x
-	return p
-}
-
-func (x ApplicationStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (ApplicationStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_proto_loan_service_proto_enumTypes[1].Descriptor()
-}
-
-func (ApplicationStatus) Type() protoreflect.EnumType {
-	return &file_internal_proto_loan_service_proto_enumTypes[1]
-}
-
-func (x ApplicationStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use ApplicationStatus.Descriptor instead.
-func (ApplicationStatus) EnumDescriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{1}
-}
-
-type LoanStatus int32
-
-const (
-	LoanStatus_LOAN_STATUS_UNSPECIFIED LoanStatus = 0
-	LoanStatus_LOAN_STATUS_ACTIVE      LoanStatus = 1
-	LoanStatus_LOAN_STATUS_PAID        LoanStatus = 2
-	LoanStatus_LOAN_STATUS_OVERDUE     LoanStatus = 3
-)
-
-// Enum value maps for LoanStatus.
-var (
-	LoanStatus_name = map[int32]string{
-		0: "LOAN_STATUS_UNSPECIFIED",
-		1: "LOAN_STATUS_ACTIVE",
-		2: "LOAN_STATUS_PAID",
-		3: "LOAN_STATUS_OVERDUE",
-	}
-	LoanStatus_value = map[string]int32{
-		"LOAN_STATUS_UNSPECIFIED": 0,
-		"LOAN_STATUS_ACTIVE":      1,
-		"LOAN_STATUS_PAID":        2,
-		"LOAN_STATUS_OVERDUE":     3,
-	}
-)
-
-func (x LoanStatus) Enum() *LoanStatus {
-	p := new(LoanStatus)
-	*p = x
-	return p
-}
-
-func (x LoanStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (LoanStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_proto_loan_service_proto_enumTypes[2].Descriptor()
-}
-
-func (LoanStatus) Type() protoreflect.EnumType {
-	return &file_internal_proto_loan_service_proto_enumTypes[2]
-}
-
-func (x LoanStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use LoanStatus.Descriptor instead.
-func (LoanStatus) EnumDescriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{2}
-}
-
-type PaymentMethod int32
-
-const (
-	PaymentMethod_PAYMENT_METHOD_UNSPECIFIED PaymentMethod = 0
-	PaymentMethod_PAYMENT_METHOD_WALLET      PaymentMethod = 1
-	PaymentMethod_PAYMENT_METHOD_CARD        PaymentMethod = 2
-	PaymentMethod_PAYMENT_METHOD_QR          PaymentMethod = 3
-	PaymentMethod_PAYMENT_METHOD_AUTOPAY     PaymentMethod = 4
-)
-
-// Enum value maps for PaymentMethod.
-var (
-	PaymentMethod_name = map[int32]string{
-		0: "PAYMENT_METHOD_UNSPECIFIED",
-		1: "PAYMENT_METHOD_WALLET",
-		2: "PAYMENT_METHOD_CARD",
-		3: "PAYMENT_METHOD_QR",
-		4: "PAYMENT_METHOD_AUTOPAY",
-	}
-	PaymentMethod_value = map[string]int32{
-		"PAYMENT_METHOD_UNSPECIFIED": 0,
-		"PAYMENT_METHOD_WALLET":      1,
-		"PAYMENT_METHOD_CARD":        2,
-		"PAYMENT_METHOD_QR":          3,
-		"PAYMENT_METHOD_AUTOPAY":     4,
-	}
-)
-
-func (x PaymentMethod) Enum() *PaymentMethod {
-	p := new(PaymentMethod)
-	*p = x
-	return p
-}
-
-func (x PaymentMethod) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PaymentMethod) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_proto_loan_service_proto_enumTypes[3].Descriptor()
-}
-
-func (PaymentMethod) Type() protoreflect.EnumType {
-	return &file_internal_proto_loan_service_proto_enumTypes[3]
-}
-
-func (x PaymentMethod) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PaymentMethod.Descriptor instead.
-func (PaymentMethod) EnumDescriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{3}
-}
-
-type PaymentStatus int32
-
-const (
-	PaymentStatus_PAYMENT_STATUS_UNSPECIFIED PaymentStatus = 0
-	PaymentStatus_PAYMENT_STATUS_PENDING     PaymentStatus = 1
-	PaymentStatus_PAYMENT_STATUS_CONFIRMED   PaymentStatus = 2
-	PaymentStatus_PAYMENT_STATUS_FAILED      PaymentStatus = 3
-)
-
-// Enum value maps for PaymentStatus.
-var (
-	PaymentStatus_name = map[int32]string{
-		0: "PAYMENT_STATUS_UNSPECIFIED",
-		1: "PAYMENT_STATUS_PENDING",
-		2: "PAYMENT_STATUS_CONFIRMED",
-		3: "PAYMENT_STATUS_FAILED",
-	}
-	PaymentStatus_value = map[string]int32{
-		"PAYMENT_STATUS_UNSPECIFIED": 0,
-		"PAYMENT_STATUS_PENDING":     1,
-		"PAYMENT_STATUS_CONFIRMED":   2,
-		"PAYMENT_STATUS_FAILED":      3,
-	}
-)
-
-func (x PaymentStatus) Enum() *PaymentStatus {
-	p := new(PaymentStatus)
-	*p = x
-	return p
-}
-
-func (x PaymentStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PaymentStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_internal_proto_loan_service_proto_enumTypes[4].Descriptor()
-}
-
-func (PaymentStatus) Type() protoreflect.EnumType {
-	return &file_internal_proto_loan_service_proto_enumTypes[4]
-}
-
-func (x PaymentStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PaymentStatus.Descriptor instead.
-func (PaymentStatus) EnumDescriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{4}
-}
-
 type LoanServiceError struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          int32                  `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
@@ -409,7 +146,7 @@ type LoanApplication struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	UserId         string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Type           ApplicationType        `protobuf:"varint,3,opt,name=type,proto3,enum=proto.ApplicationType" json:"type,omitempty"`
+	Type           string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	VehicleVin     string                 `protobuf:"bytes,4,opt,name=vehicle_vin,json=vehicleVin,proto3" json:"vehicle_vin,omitempty"`
 	VehicleName    string                 `protobuf:"bytes,5,opt,name=vehicle_name,json=vehicleName,proto3" json:"vehicle_name,omitempty"`
 	CurrencyCode   string                 `protobuf:"bytes,6,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
@@ -419,7 +156,7 @@ type LoanApplication struct {
 	MarginRate     float64                `protobuf:"fixed64,10,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
 	TermMonths     int32                  `protobuf:"varint,11,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
 	MonthlyPayment int64                  `protobuf:"varint,12,opt,name=monthly_payment,json=monthlyPayment,proto3" json:"monthly_payment,omitempty"`
-	Status         ApplicationStatus      `protobuf:"varint,13,opt,name=status,proto3,enum=proto.ApplicationStatus" json:"status,omitempty"`
+	Status         string                 `protobuf:"bytes,13,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt      string                 `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt      string                 `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields  protoimpl.UnknownFields
@@ -470,11 +207,11 @@ func (x *LoanApplication) GetUserId() string {
 	return ""
 }
 
-func (x *LoanApplication) GetType() ApplicationType {
+func (x *LoanApplication) GetType() string {
 	if x != nil {
 		return x.Type
 	}
-	return ApplicationType_APPLICATION_TYPE_UNSPECIFIED
+	return ""
 }
 
 func (x *LoanApplication) GetVehicleVin() string {
@@ -540,11 +277,11 @@ func (x *LoanApplication) GetMonthlyPayment() int64 {
 	return 0
 }
 
-func (x *LoanApplication) GetStatus() ApplicationStatus {
+func (x *LoanApplication) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
-	return ApplicationStatus_APPLICATION_STATUS_UNSPECIFIED
+	return ""
 }
 
 func (x *LoanApplication) GetCreatedAt() string {
@@ -572,7 +309,7 @@ type Loan struct {
 	TermMonths       int32                  `protobuf:"varint,7,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
 	MonthlyPayment   int64                  `protobuf:"varint,8,opt,name=monthly_payment,json=monthlyPayment,proto3" json:"monthly_payment,omitempty"`
 	RemainingBalance int64                  `protobuf:"varint,9,opt,name=remaining_balance,json=remainingBalance,proto3" json:"remaining_balance,omitempty"`
-	Status           LoanStatus             `protobuf:"varint,10,opt,name=status,proto3,enum=proto.LoanStatus" json:"status,omitempty"`
+	Status           string                 `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty"`
 	CreatedAt        string                 `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
@@ -671,11 +408,11 @@ func (x *Loan) GetRemainingBalance() int64 {
 	return 0
 }
 
-func (x *Loan) GetStatus() LoanStatus {
+func (x *Loan) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
-	return LoanStatus_LOAN_STATUS_UNSPECIFIED
+	return ""
 }
 
 func (x *Loan) GetCreatedAt() string {
@@ -692,8 +429,8 @@ type Payment struct {
 	CurrencyCode  string                 `protobuf:"bytes,3,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
 	PaymentDate   string                 `protobuf:"bytes,4,opt,name=payment_date,json=paymentDate,proto3" json:"payment_date,omitempty"`
 	Amount        int64                  `protobuf:"varint,5,opt,name=amount,proto3" json:"amount,omitempty"`
-	Method        PaymentMethod          `protobuf:"varint,6,opt,name=method,proto3,enum=proto.PaymentMethod" json:"method,omitempty"`
-	Status        PaymentStatus          `protobuf:"varint,7,opt,name=status,proto3,enum=proto.PaymentStatus" json:"status,omitempty"`
+	Method        string                 `protobuf:"bytes,6,opt,name=method,proto3" json:"method,omitempty"`
+	Status        string                 `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
 	TransactionId string                 `protobuf:"bytes,8,opt,name=transaction_id,json=transactionId,proto3" json:"transaction_id,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -765,18 +502,18 @@ func (x *Payment) GetAmount() int64 {
 	return 0
 }
 
-func (x *Payment) GetMethod() PaymentMethod {
+func (x *Payment) GetMethod() string {
 	if x != nil {
 		return x.Method
 	}
-	return PaymentMethod_PAYMENT_METHOD_UNSPECIFIED
+	return ""
 }
 
-func (x *Payment) GetStatus() PaymentStatus {
+func (x *Payment) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
-	return PaymentStatus_PAYMENT_STATUS_UNSPECIFIED
+	return ""
 }
 
 func (x *Payment) GetTransactionId() string {
@@ -915,18 +652,18 @@ func (x *PageResponse) GetTotalPages() int32 {
 
 // Application
 type CreateApplicationRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	UserId           string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Type             ApplicationType        `protobuf:"varint,2,opt,name=type,proto3,enum=proto.ApplicationType" json:"type,omitempty"`
-	VehicleVin       string                 `protobuf:"bytes,3,opt,name=vehicle_vin,json=vehicleVin,proto3" json:"vehicle_vin,omitempty"`
-	VehicleName      string                 `protobuf:"bytes,4,opt,name=vehicle_name,json=vehicleName,proto3" json:"vehicle_name,omitempty"`
-	CurrencyCode     string                 `protobuf:"bytes,5,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
-	PriceMinor       int64                  `protobuf:"varint,6,opt,name=price_minor,json=priceMinor,proto3" json:"price_minor,omitempty"`
-	DownPaymentMinor int64                  `protobuf:"varint,7,opt,name=down_payment_minor,json=downPaymentMinor,proto3" json:"down_payment_minor,omitempty"`
-	TermMonths       int32                  `protobuf:"varint,8,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
-	MarginRate       float64                `protobuf:"fixed64,9,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	VehicleVin    string                 `protobuf:"bytes,3,opt,name=vehicle_vin,json=vehicleVin,proto3" json:"vehicle_vin,omitempty"`
+	VehicleName   string                 `protobuf:"bytes,4,opt,name=vehicle_name,json=vehicleName,proto3" json:"vehicle_name,omitempty"`
+	CurrencyCode  string                 `protobuf:"bytes,5,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
+	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	DownPayment   int64                  `protobuf:"varint,7,opt,name=down_payment,json=downPayment,proto3" json:"down_payment,omitempty"`
+	TermMonths    int32                  `protobuf:"varint,8,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
+	MarginRate    float64                `protobuf:"fixed64,9,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateApplicationRequest) Reset() {
@@ -966,11 +703,11 @@ func (x *CreateApplicationRequest) GetUserId() string {
 	return ""
 }
 
-func (x *CreateApplicationRequest) GetType() ApplicationType {
+func (x *CreateApplicationRequest) GetType() string {
 	if x != nil {
 		return x.Type
 	}
-	return ApplicationType_APPLICATION_TYPE_UNSPECIFIED
+	return ""
 }
 
 func (x *CreateApplicationRequest) GetVehicleVin() string {
@@ -994,16 +731,16 @@ func (x *CreateApplicationRequest) GetCurrencyCode() string {
 	return ""
 }
 
-func (x *CreateApplicationRequest) GetPriceMinor() int64 {
+func (x *CreateApplicationRequest) GetPrice() int64 {
 	if x != nil {
-		return x.PriceMinor
+		return x.Price
 	}
 	return 0
 }
 
-func (x *CreateApplicationRequest) GetDownPaymentMinor() int64 {
+func (x *CreateApplicationRequest) GetDownPayment() int64 {
 	if x != nil {
-		return x.DownPaymentMinor
+		return x.DownPayment
 	}
 	return 0
 }
@@ -1372,14 +1109,14 @@ func (x *ListVehiclesResponse) GetLoanServiceError() *LoanServiceError {
 
 // Calculator
 type CalculateRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	CurrencyCode     string                 `protobuf:"bytes,1,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
-	PriceMinor       int64                  `protobuf:"varint,2,opt,name=price_minor,json=priceMinor,proto3" json:"price_minor,omitempty"`
-	DownPaymentMinor int64                  `protobuf:"varint,3,opt,name=down_payment_minor,json=downPaymentMinor,proto3" json:"down_payment_minor,omitempty"`
-	TermMonths       int32                  `protobuf:"varint,4,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
-	MarginRate       float64                `protobuf:"fixed64,5,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrencyCode  string                 `protobuf:"bytes,1,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
+	Price         int64                  `protobuf:"varint,2,opt,name=price,proto3" json:"price,omitempty"`
+	DownPayment   int64                  `protobuf:"varint,3,opt,name=down_payment,json=downPayment,proto3" json:"down_payment,omitempty"`
+	TermMonths    int32                  `protobuf:"varint,4,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
+	MarginRate    float64                `protobuf:"fixed64,5,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CalculateRequest) Reset() {
@@ -1419,16 +1156,16 @@ func (x *CalculateRequest) GetCurrencyCode() string {
 	return ""
 }
 
-func (x *CalculateRequest) GetPriceMinor() int64 {
+func (x *CalculateRequest) GetPrice() int64 {
 	if x != nil {
-		return x.PriceMinor
+		return x.Price
 	}
 	return 0
 }
 
-func (x *CalculateRequest) GetDownPaymentMinor() int64 {
+func (x *CalculateRequest) GetDownPayment() int64 {
 	if x != nil {
-		return x.DownPaymentMinor
+		return x.DownPayment
 	}
 	return 0
 }
@@ -1448,13 +1185,13 @@ func (x *CalculateRequest) GetMarginRate() float64 {
 }
 
 type CalculateResponse struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	NetPriceMinor       int64                  `protobuf:"varint,1,opt,name=net_price_minor,json=netPriceMinor,proto3" json:"net_price_minor,omitempty"`
-	MonthlyPaymentMinor int64                  `protobuf:"varint,2,opt,name=monthly_payment_minor,json=monthlyPaymentMinor,proto3" json:"monthly_payment_minor,omitempty"`
-	TotalAmountMinor    int64                  `protobuf:"varint,3,opt,name=total_amount_minor,json=totalAmountMinor,proto3" json:"total_amount_minor,omitempty"`
-	LoanServiceError    *LoanServiceError      `protobuf:"bytes,100,opt,name=loan_service_error,json=loanServiceError,proto3" json:"loan_service_error,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	NetPrice         int64                  `protobuf:"varint,1,opt,name=net_price,json=netPrice,proto3" json:"net_price,omitempty"`
+	MonthlyPayment   int64                  `protobuf:"varint,2,opt,name=monthly_payment,json=monthlyPayment,proto3" json:"monthly_payment,omitempty"`
+	TotalAmount      int64                  `protobuf:"varint,3,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
+	LoanServiceError *LoanServiceError      `protobuf:"bytes,100,opt,name=loan_service_error,json=loanServiceError,proto3" json:"loan_service_error,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *CalculateResponse) Reset() {
@@ -1487,23 +1224,23 @@ func (*CalculateResponse) Descriptor() ([]byte, []int) {
 	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *CalculateResponse) GetNetPriceMinor() int64 {
+func (x *CalculateResponse) GetNetPrice() int64 {
 	if x != nil {
-		return x.NetPriceMinor
+		return x.NetPrice
 	}
 	return 0
 }
 
-func (x *CalculateResponse) GetMonthlyPaymentMinor() int64 {
+func (x *CalculateResponse) GetMonthlyPayment() int64 {
 	if x != nil {
-		return x.MonthlyPaymentMinor
+		return x.MonthlyPayment
 	}
 	return 0
 }
 
-func (x *CalculateResponse) GetTotalAmountMinor() int64 {
+func (x *CalculateResponse) GetTotalAmount() int64 {
 	if x != nil {
-		return x.TotalAmountMinor
+		return x.TotalAmount
 	}
 	return 0
 }
@@ -1730,7 +1467,7 @@ type CreatePaymentRequest struct {
 	LoanId        string                 `protobuf:"bytes,1,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 	CurrencyCode  string                 `protobuf:"bytes,2,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
 	Amount        int64                  `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	Method        PaymentMethod          `protobuf:"varint,4,opt,name=method,proto3,enum=proto.PaymentMethod" json:"method,omitempty"`
+	Method        string                 `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1786,11 +1523,11 @@ func (x *CreatePaymentRequest) GetAmount() int64 {
 	return 0
 }
 
-func (x *CreatePaymentRequest) GetMethod() PaymentMethod {
+func (x *CreatePaymentRequest) GetMethod() string {
 	if x != nil {
 		return x.Method
 	}
-	return PaymentMethod_PAYMENT_METHOD_UNSPECIFIED
+	return ""
 }
 
 type CreatePaymentResponse struct {
@@ -1969,11 +1706,11 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\x03vin\x18\x01 \x01(\tR\x03vin\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05price\x18\x03 \x01(\x03R\x05price\x12#\n" +
-	"\rcurrency_code\x18\x04 \x01(\tR\fcurrencyCode\"\x80\x04\n" +
+	"\rcurrency_code\x18\x04 \x01(\tR\fcurrencyCode\"\xce\x03\n" +
 	"\x0fLoanApplication\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12*\n" +
-	"\x04type\x18\x03 \x01(\x0e2\x16.proto.ApplicationTypeR\x04type\x12\x1f\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1f\n" +
 	"\vvehicle_vin\x18\x04 \x01(\tR\n" +
 	"vehicleVin\x12!\n" +
 	"\fvehicle_name\x18\x05 \x01(\tR\vvehicleName\x12#\n" +
@@ -1986,12 +1723,12 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"marginRate\x12\x1f\n" +
 	"\vterm_months\x18\v \x01(\x05R\n" +
 	"termMonths\x12'\n" +
-	"\x0fmonthly_payment\x18\f \x01(\x03R\x0emonthlyPayment\x120\n" +
-	"\x06status\x18\r \x01(\x0e2\x18.proto.ApplicationStatusR\x06status\x12\x1d\n" +
+	"\x0fmonthly_payment\x18\f \x01(\x03R\x0emonthlyPayment\x12\x16\n" +
+	"\x06status\x18\r \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x0e \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x0f \x01(\tR\tupdatedAt\"\xf5\x02\n" +
+	"updated_at\x18\x0f \x01(\tR\tupdatedAt\"\xe2\x02\n" +
 	"\x04Loan\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12%\n" +
 	"\x0eapplication_id\x18\x02 \x01(\tR\rapplicationId\x12\x17\n" +
@@ -2003,19 +1740,19 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\vterm_months\x18\a \x01(\x05R\n" +
 	"termMonths\x12'\n" +
 	"\x0fmonthly_payment\x18\b \x01(\x03R\x0emonthlyPayment\x12+\n" +
-	"\x11remaining_balance\x18\t \x01(\x03R\x10remainingBalance\x12)\n" +
+	"\x11remaining_balance\x18\t \x01(\x03R\x10remainingBalance\x12\x16\n" +
 	"\x06status\x18\n" +
-	" \x01(\x0e2\x11.proto.LoanStatusR\x06status\x12\x1d\n" +
+	" \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\v \x01(\tR\tcreatedAt\"\xb4\x02\n" +
+	"created_at\x18\v \x01(\tR\tcreatedAt\"\x88\x02\n" +
 	"\aPayment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\aloan_id\x18\x02 \x01(\tR\x06loanId\x12#\n" +
 	"\rcurrency_code\x18\x03 \x01(\tR\fcurrencyCode\x12!\n" +
 	"\fpayment_date\x18\x04 \x01(\tR\vpaymentDate\x12\x16\n" +
-	"\x06amount\x18\x05 \x01(\x03R\x06amount\x12,\n" +
-	"\x06method\x18\x06 \x01(\x0e2\x14.proto.PaymentMethodR\x06method\x12,\n" +
-	"\x06status\x18\a \x01(\x0e2\x14.proto.PaymentStatusR\x06status\x12%\n" +
+	"\x06amount\x18\x05 \x01(\x03R\x06amount\x12\x16\n" +
+	"\x06method\x18\x06 \x01(\tR\x06method\x12\x16\n" +
+	"\x06status\x18\a \x01(\tR\x06status\x12%\n" +
 	"\x0etransaction_id\x18\b \x01(\tR\rtransactionId\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\t \x01(\tR\tcreatedAt\"7\n" +
@@ -2028,17 +1765,16 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\vtotal_items\x18\x03 \x01(\x05R\n" +
 	"totalItems\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
-	"totalPages\"\xd9\x02\n" +
+	"totalPages\"\xab\x02\n" +
 	"\x18CreateApplicationRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12*\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x16.proto.ApplicationTypeR\x04type\x12\x1f\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\tR\x04type\x12\x1f\n" +
 	"\vvehicle_vin\x18\x03 \x01(\tR\n" +
 	"vehicleVin\x12!\n" +
 	"\fvehicle_name\x18\x04 \x01(\tR\vvehicleName\x12#\n" +
-	"\rcurrency_code\x18\x05 \x01(\tR\fcurrencyCode\x12\x1f\n" +
-	"\vprice_minor\x18\x06 \x01(\x03R\n" +
-	"priceMinor\x12,\n" +
-	"\x12down_payment_minor\x18\a \x01(\x03R\x10downPaymentMinor\x12\x1f\n" +
+	"\rcurrency_code\x18\x05 \x01(\tR\fcurrencyCode\x12\x14\n" +
+	"\x05price\x18\x06 \x01(\x03R\x05price\x12!\n" +
+	"\fdown_payment\x18\a \x01(\x03R\vdownPayment\x12\x1f\n" +
 	"\vterm_months\x18\b \x01(\x05R\n" +
 	"termMonths\x12\x1f\n" +
 	"\vmargin_rate\x18\t \x01(\x01R\n" +
@@ -2061,20 +1797,19 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\x13ListVehiclesRequest\"\x89\x01\n" +
 	"\x14ListVehiclesResponse\x12*\n" +
 	"\bvehicles\x18\x01 \x03(\v2\x0e.proto.VehicleR\bvehicles\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\xc8\x01\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\xb2\x01\n" +
 	"\x10CalculateRequest\x12#\n" +
-	"\rcurrency_code\x18\x01 \x01(\tR\fcurrencyCode\x12\x1f\n" +
-	"\vprice_minor\x18\x02 \x01(\x03R\n" +
-	"priceMinor\x12,\n" +
-	"\x12down_payment_minor\x18\x03 \x01(\x03R\x10downPaymentMinor\x12\x1f\n" +
+	"\rcurrency_code\x18\x01 \x01(\tR\fcurrencyCode\x12\x14\n" +
+	"\x05price\x18\x02 \x01(\x03R\x05price\x12!\n" +
+	"\fdown_payment\x18\x03 \x01(\x03R\vdownPayment\x12\x1f\n" +
 	"\vterm_months\x18\x04 \x01(\x05R\n" +
 	"termMonths\x12\x1f\n" +
 	"\vmargin_rate\x18\x05 \x01(\x01R\n" +
-	"marginRate\"\xe4\x01\n" +
-	"\x11CalculateResponse\x12&\n" +
-	"\x0fnet_price_minor\x18\x01 \x01(\x03R\rnetPriceMinor\x122\n" +
-	"\x15monthly_payment_minor\x18\x02 \x01(\x03R\x13monthlyPaymentMinor\x12,\n" +
-	"\x12total_amount_minor\x18\x03 \x01(\x03R\x10totalAmountMinor\x12E\n" +
+	"marginRate\"\xc3\x01\n" +
+	"\x11CalculateResponse\x12\x1b\n" +
+	"\tnet_price\x18\x01 \x01(\x03R\bnetPrice\x12'\n" +
+	"\x0fmonthly_payment\x18\x02 \x01(\x03R\x0emonthlyPayment\x12!\n" +
+	"\ftotal_amount\x18\x03 \x01(\x03R\vtotalAmount\x12E\n" +
 	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\" \n" +
 	"\x0eGetLoanRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"y\n" +
@@ -2087,12 +1822,12 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\x11ListLoansResponse\x12!\n" +
 	"\x05loans\x18\x01 \x03(\v2\v.proto.LoanR\x05loans\x12'\n" +
 	"\x04page\x18\x02 \x01(\v2\x13.proto.PageResponseR\x04page\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\x9a\x01\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\x84\x01\n" +
 	"\x14CreatePaymentRequest\x12\x17\n" +
 	"\aloan_id\x18\x01 \x01(\tR\x06loanId\x12#\n" +
 	"\rcurrency_code\x18\x02 \x01(\tR\fcurrencyCode\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12,\n" +
-	"\x06method\x18\x04 \x01(\x0e2\x14.proto.PaymentMethodR\x06method\"\x88\x01\n" +
+	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12\x16\n" +
+	"\x06method\x18\x04 \x01(\tR\x06method\"\x88\x01\n" +
 	"\x15CreatePaymentResponse\x12(\n" +
 	"\apayment\x18\x01 \x01(\v2\x0e.proto.PaymentR\apayment\x12E\n" +
 	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"V\n" +
@@ -2102,34 +1837,7 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\x14ListPaymentsResponse\x12*\n" +
 	"\bpayments\x18\x01 \x03(\v2\x0e.proto.PaymentR\bpayments\x12'\n" +
 	"\x04page\x18\x02 \x01(\v2\x13.proto.PageResponseR\x04page\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError*m\n" +
-	"\x0fApplicationType\x12 \n" +
-	"\x1cAPPLICATION_TYPE_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15APPLICATION_TYPE_AUTO\x10\x01\x12\x1d\n" +
-	"\x19APPLICATION_TYPE_PERSONAL\x10\x02*\xb4\x01\n" +
-	"\x11ApplicationStatus\x12\"\n" +
-	"\x1eAPPLICATION_STATUS_UNSPECIFIED\x10\x00\x12\x1a\n" +
-	"\x16APPLICATION_STATUS_NEW\x10\x01\x12\x1d\n" +
-	"\x19APPLICATION_STATUS_REVIEW\x10\x02\x12\x1f\n" +
-	"\x1bAPPLICATION_STATUS_APPROVED\x10\x03\x12\x1f\n" +
-	"\x1bAPPLICATION_STATUS_REJECTED\x10\x04*p\n" +
-	"\n" +
-	"LoanStatus\x12\x1b\n" +
-	"\x17LOAN_STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12LOAN_STATUS_ACTIVE\x10\x01\x12\x14\n" +
-	"\x10LOAN_STATUS_PAID\x10\x02\x12\x17\n" +
-	"\x13LOAN_STATUS_OVERDUE\x10\x03*\x96\x01\n" +
-	"\rPaymentMethod\x12\x1e\n" +
-	"\x1aPAYMENT_METHOD_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15PAYMENT_METHOD_WALLET\x10\x01\x12\x17\n" +
-	"\x13PAYMENT_METHOD_CARD\x10\x02\x12\x15\n" +
-	"\x11PAYMENT_METHOD_QR\x10\x03\x12\x1a\n" +
-	"\x16PAYMENT_METHOD_AUTOPAY\x10\x04*\x84\x01\n" +
-	"\rPaymentStatus\x12\x1e\n" +
-	"\x1aPAYMENT_STATUS_UNSPECIFIED\x10\x00\x12\x1a\n" +
-	"\x16PAYMENT_STATUS_PENDING\x10\x01\x12\x1c\n" +
-	"\x18PAYMENT_STATUS_CONFIRMED\x10\x02\x12\x19\n" +
-	"\x15PAYMENT_STATUS_FAILED\x10\x032\xa2\x05\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError2\xa2\x05\n" +
 	"\fLoansService\x12V\n" +
 	"\x11CreateApplication\x12\x1f.proto.CreateApplicationRequest\x1a .proto.CreateApplicationResponse\x12M\n" +
 	"\x0eGetApplication\x12\x1c.proto.GetApplicationRequest\x1a\x1d.proto.GetApplicationResponse\x12S\n" +
@@ -2153,94 +1861,81 @@ func file_internal_proto_loan_service_proto_rawDescGZIP() []byte {
 	return file_internal_proto_loan_service_proto_rawDescData
 }
 
-var file_internal_proto_loan_service_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_internal_proto_loan_service_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_internal_proto_loan_service_proto_goTypes = []any{
-	(ApplicationType)(0),              // 0: proto.ApplicationType
-	(ApplicationStatus)(0),            // 1: proto.ApplicationStatus
-	(LoanStatus)(0),                   // 2: proto.LoanStatus
-	(PaymentMethod)(0),                // 3: proto.PaymentMethod
-	(PaymentStatus)(0),                // 4: proto.PaymentStatus
-	(*LoanServiceError)(nil),          // 5: proto.LoanServiceError
-	(*Vehicle)(nil),                   // 6: proto.Vehicle
-	(*LoanApplication)(nil),           // 7: proto.LoanApplication
-	(*Loan)(nil),                      // 8: proto.Loan
-	(*Payment)(nil),                   // 9: proto.Payment
-	(*PageRequest)(nil),               // 10: proto.PageRequest
-	(*PageResponse)(nil),              // 11: proto.PageResponse
-	(*CreateApplicationRequest)(nil),  // 12: proto.CreateApplicationRequest
-	(*CreateApplicationResponse)(nil), // 13: proto.CreateApplicationResponse
-	(*GetApplicationRequest)(nil),     // 14: proto.GetApplicationRequest
-	(*GetApplicationResponse)(nil),    // 15: proto.GetApplicationResponse
-	(*ListApplicationsRequest)(nil),   // 16: proto.ListApplicationsRequest
-	(*ListApplicationsResponse)(nil),  // 17: proto.ListApplicationsResponse
-	(*ListVehiclesRequest)(nil),       // 18: proto.ListVehiclesRequest
-	(*ListVehiclesResponse)(nil),      // 19: proto.ListVehiclesResponse
-	(*CalculateRequest)(nil),          // 20: proto.CalculateRequest
-	(*CalculateResponse)(nil),         // 21: proto.CalculateResponse
-	(*GetLoanRequest)(nil),            // 22: proto.GetLoanRequest
-	(*GetLoanResponse)(nil),           // 23: proto.GetLoanResponse
-	(*ListLoansRequest)(nil),          // 24: proto.ListLoansRequest
-	(*ListLoansResponse)(nil),         // 25: proto.ListLoansResponse
-	(*CreatePaymentRequest)(nil),      // 26: proto.CreatePaymentRequest
-	(*CreatePaymentResponse)(nil),     // 27: proto.CreatePaymentResponse
-	(*ListPaymentsRequest)(nil),       // 28: proto.ListPaymentsRequest
-	(*ListPaymentsResponse)(nil),      // 29: proto.ListPaymentsResponse
+	(*LoanServiceError)(nil),          // 0: proto.LoanServiceError
+	(*Vehicle)(nil),                   // 1: proto.Vehicle
+	(*LoanApplication)(nil),           // 2: proto.LoanApplication
+	(*Loan)(nil),                      // 3: proto.Loan
+	(*Payment)(nil),                   // 4: proto.Payment
+	(*PageRequest)(nil),               // 5: proto.PageRequest
+	(*PageResponse)(nil),              // 6: proto.PageResponse
+	(*CreateApplicationRequest)(nil),  // 7: proto.CreateApplicationRequest
+	(*CreateApplicationResponse)(nil), // 8: proto.CreateApplicationResponse
+	(*GetApplicationRequest)(nil),     // 9: proto.GetApplicationRequest
+	(*GetApplicationResponse)(nil),    // 10: proto.GetApplicationResponse
+	(*ListApplicationsRequest)(nil),   // 11: proto.ListApplicationsRequest
+	(*ListApplicationsResponse)(nil),  // 12: proto.ListApplicationsResponse
+	(*ListVehiclesRequest)(nil),       // 13: proto.ListVehiclesRequest
+	(*ListVehiclesResponse)(nil),      // 14: proto.ListVehiclesResponse
+	(*CalculateRequest)(nil),          // 15: proto.CalculateRequest
+	(*CalculateResponse)(nil),         // 16: proto.CalculateResponse
+	(*GetLoanRequest)(nil),            // 17: proto.GetLoanRequest
+	(*GetLoanResponse)(nil),           // 18: proto.GetLoanResponse
+	(*ListLoansRequest)(nil),          // 19: proto.ListLoansRequest
+	(*ListLoansResponse)(nil),         // 20: proto.ListLoansResponse
+	(*CreatePaymentRequest)(nil),      // 21: proto.CreatePaymentRequest
+	(*CreatePaymentResponse)(nil),     // 22: proto.CreatePaymentResponse
+	(*ListPaymentsRequest)(nil),       // 23: proto.ListPaymentsRequest
+	(*ListPaymentsResponse)(nil),      // 24: proto.ListPaymentsResponse
 }
 var file_internal_proto_loan_service_proto_depIdxs = []int32{
-	0,  // 0: proto.LoanApplication.type:type_name -> proto.ApplicationType
-	1,  // 1: proto.LoanApplication.status:type_name -> proto.ApplicationStatus
-	2,  // 2: proto.Loan.status:type_name -> proto.LoanStatus
-	3,  // 3: proto.Payment.method:type_name -> proto.PaymentMethod
-	4,  // 4: proto.Payment.status:type_name -> proto.PaymentStatus
-	0,  // 5: proto.CreateApplicationRequest.type:type_name -> proto.ApplicationType
-	7,  // 6: proto.CreateApplicationResponse.application:type_name -> proto.LoanApplication
-	5,  // 7: proto.CreateApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
-	7,  // 8: proto.GetApplicationResponse.application:type_name -> proto.LoanApplication
-	5,  // 9: proto.GetApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
-	10, // 10: proto.ListApplicationsRequest.page:type_name -> proto.PageRequest
-	7,  // 11: proto.ListApplicationsResponse.applications:type_name -> proto.LoanApplication
-	11, // 12: proto.ListApplicationsResponse.page:type_name -> proto.PageResponse
-	5,  // 13: proto.ListApplicationsResponse.loan_service_error:type_name -> proto.LoanServiceError
-	6,  // 14: proto.ListVehiclesResponse.vehicles:type_name -> proto.Vehicle
-	5,  // 15: proto.ListVehiclesResponse.loan_service_error:type_name -> proto.LoanServiceError
-	5,  // 16: proto.CalculateResponse.loan_service_error:type_name -> proto.LoanServiceError
-	8,  // 17: proto.GetLoanResponse.loan:type_name -> proto.Loan
-	5,  // 18: proto.GetLoanResponse.loan_service_error:type_name -> proto.LoanServiceError
-	10, // 19: proto.ListLoansRequest.page:type_name -> proto.PageRequest
-	8,  // 20: proto.ListLoansResponse.loans:type_name -> proto.Loan
-	11, // 21: proto.ListLoansResponse.page:type_name -> proto.PageResponse
-	5,  // 22: proto.ListLoansResponse.loan_service_error:type_name -> proto.LoanServiceError
-	3,  // 23: proto.CreatePaymentRequest.method:type_name -> proto.PaymentMethod
-	9,  // 24: proto.CreatePaymentResponse.payment:type_name -> proto.Payment
-	5,  // 25: proto.CreatePaymentResponse.loan_service_error:type_name -> proto.LoanServiceError
-	10, // 26: proto.ListPaymentsRequest.page:type_name -> proto.PageRequest
-	9,  // 27: proto.ListPaymentsResponse.payments:type_name -> proto.Payment
-	11, // 28: proto.ListPaymentsResponse.page:type_name -> proto.PageResponse
-	5,  // 29: proto.ListPaymentsResponse.loan_service_error:type_name -> proto.LoanServiceError
-	12, // 30: proto.LoansService.CreateApplication:input_type -> proto.CreateApplicationRequest
-	14, // 31: proto.LoansService.GetApplication:input_type -> proto.GetApplicationRequest
-	16, // 32: proto.LoansService.ListApplications:input_type -> proto.ListApplicationsRequest
-	18, // 33: proto.LoansService.ListVehicles:input_type -> proto.ListVehiclesRequest
-	20, // 34: proto.LoansService.Calculate:input_type -> proto.CalculateRequest
-	22, // 35: proto.LoansService.GetLoan:input_type -> proto.GetLoanRequest
-	24, // 36: proto.LoansService.ListLoans:input_type -> proto.ListLoansRequest
-	26, // 37: proto.LoansService.CreatePayment:input_type -> proto.CreatePaymentRequest
-	28, // 38: proto.LoansService.ListPayments:input_type -> proto.ListPaymentsRequest
-	13, // 39: proto.LoansService.CreateApplication:output_type -> proto.CreateApplicationResponse
-	15, // 40: proto.LoansService.GetApplication:output_type -> proto.GetApplicationResponse
-	17, // 41: proto.LoansService.ListApplications:output_type -> proto.ListApplicationsResponse
-	19, // 42: proto.LoansService.ListVehicles:output_type -> proto.ListVehiclesResponse
-	21, // 43: proto.LoansService.Calculate:output_type -> proto.CalculateResponse
-	23, // 44: proto.LoansService.GetLoan:output_type -> proto.GetLoanResponse
-	25, // 45: proto.LoansService.ListLoans:output_type -> proto.ListLoansResponse
-	27, // 46: proto.LoansService.CreatePayment:output_type -> proto.CreatePaymentResponse
-	29, // 47: proto.LoansService.ListPayments:output_type -> proto.ListPaymentsResponse
-	39, // [39:48] is the sub-list for method output_type
-	30, // [30:39] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	2,  // 0: proto.CreateApplicationResponse.application:type_name -> proto.LoanApplication
+	0,  // 1: proto.CreateApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
+	2,  // 2: proto.GetApplicationResponse.application:type_name -> proto.LoanApplication
+	0,  // 3: proto.GetApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
+	5,  // 4: proto.ListApplicationsRequest.page:type_name -> proto.PageRequest
+	2,  // 5: proto.ListApplicationsResponse.applications:type_name -> proto.LoanApplication
+	6,  // 6: proto.ListApplicationsResponse.page:type_name -> proto.PageResponse
+	0,  // 7: proto.ListApplicationsResponse.loan_service_error:type_name -> proto.LoanServiceError
+	1,  // 8: proto.ListVehiclesResponse.vehicles:type_name -> proto.Vehicle
+	0,  // 9: proto.ListVehiclesResponse.loan_service_error:type_name -> proto.LoanServiceError
+	0,  // 10: proto.CalculateResponse.loan_service_error:type_name -> proto.LoanServiceError
+	3,  // 11: proto.GetLoanResponse.loan:type_name -> proto.Loan
+	0,  // 12: proto.GetLoanResponse.loan_service_error:type_name -> proto.LoanServiceError
+	5,  // 13: proto.ListLoansRequest.page:type_name -> proto.PageRequest
+	3,  // 14: proto.ListLoansResponse.loans:type_name -> proto.Loan
+	6,  // 15: proto.ListLoansResponse.page:type_name -> proto.PageResponse
+	0,  // 16: proto.ListLoansResponse.loan_service_error:type_name -> proto.LoanServiceError
+	4,  // 17: proto.CreatePaymentResponse.payment:type_name -> proto.Payment
+	0,  // 18: proto.CreatePaymentResponse.loan_service_error:type_name -> proto.LoanServiceError
+	5,  // 19: proto.ListPaymentsRequest.page:type_name -> proto.PageRequest
+	4,  // 20: proto.ListPaymentsResponse.payments:type_name -> proto.Payment
+	6,  // 21: proto.ListPaymentsResponse.page:type_name -> proto.PageResponse
+	0,  // 22: proto.ListPaymentsResponse.loan_service_error:type_name -> proto.LoanServiceError
+	7,  // 23: proto.LoansService.CreateApplication:input_type -> proto.CreateApplicationRequest
+	9,  // 24: proto.LoansService.GetApplication:input_type -> proto.GetApplicationRequest
+	11, // 25: proto.LoansService.ListApplications:input_type -> proto.ListApplicationsRequest
+	13, // 26: proto.LoansService.ListVehicles:input_type -> proto.ListVehiclesRequest
+	15, // 27: proto.LoansService.Calculate:input_type -> proto.CalculateRequest
+	17, // 28: proto.LoansService.GetLoan:input_type -> proto.GetLoanRequest
+	19, // 29: proto.LoansService.ListLoans:input_type -> proto.ListLoansRequest
+	21, // 30: proto.LoansService.CreatePayment:input_type -> proto.CreatePaymentRequest
+	23, // 31: proto.LoansService.ListPayments:input_type -> proto.ListPaymentsRequest
+	8,  // 32: proto.LoansService.CreateApplication:output_type -> proto.CreateApplicationResponse
+	10, // 33: proto.LoansService.GetApplication:output_type -> proto.GetApplicationResponse
+	12, // 34: proto.LoansService.ListApplications:output_type -> proto.ListApplicationsResponse
+	14, // 35: proto.LoansService.ListVehicles:output_type -> proto.ListVehiclesResponse
+	16, // 36: proto.LoansService.Calculate:output_type -> proto.CalculateResponse
+	18, // 37: proto.LoansService.GetLoan:output_type -> proto.GetLoanResponse
+	20, // 38: proto.LoansService.ListLoans:output_type -> proto.ListLoansResponse
+	22, // 39: proto.LoansService.CreatePayment:output_type -> proto.CreatePaymentResponse
+	24, // 40: proto.LoansService.ListPayments:output_type -> proto.ListPaymentsResponse
+	32, // [32:41] is the sub-list for method output_type
+	23, // [23:32] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_internal_proto_loan_service_proto_init() }
@@ -2253,14 +1948,13 @@ func file_internal_proto_loan_service_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_proto_loan_service_proto_rawDesc), len(file_internal_proto_loan_service_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      0,
 			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_internal_proto_loan_service_proto_goTypes,
 		DependencyIndexes: file_internal_proto_loan_service_proto_depIdxs,
-		EnumInfos:         file_internal_proto_loan_service_proto_enumTypes,
 		MessageInfos:      file_internal_proto_loan_service_proto_msgTypes,
 	}.Build()
 	File_internal_proto_loan_service_proto = out.File

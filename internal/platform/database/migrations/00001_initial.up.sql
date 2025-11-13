@@ -1,6 +1,6 @@
 CREATE TYPE application_type AS ENUM ('AUTO', 'PERSONAL');        
 CREATE TYPE application_status AS ENUM ('NEW', 'REVIEW', 'APPROVED', 'REJECTED');  -- status: NEW / REVIEW / APPROVED / REJECTED
-CREATE TYPE loan_status AS ENUM ('ACTIVE', 'PAID', 'OVERDUE');    -- status: ACTIVE / PAID / OVERDUE
+CREATE TYPE loan_status AS ENUM ('ACTIVE', 'PAID', 'OVERDUE');  -- status: ACTIVE / PAID / OVERDUE
 
 CREATE TABLE IF NOT EXISTS loan_applications  (
     id               BIGSERIAL PRIMARY KEY,
@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS loan_applications  (
     type             application_type NOT NULL,
     vehicle_vin      VARCHAR(32),
     vehicle_name     VARCHAR(255),
+    currency_code    VARCHAR(10) NOT NULL,
     price            NUMERIC(18,2),
     down_payment     NUMERIC(18,2),
     net_price        NUMERIC(18,2),
@@ -24,6 +25,7 @@ CREATE TABLE IF NOT EXISTS loans (
     application_id     BIGINT REFERENCES loan_applications(id),
     user_id            BIGINT NOT NULL,
     vehicle_vin        VARCHAR(32),
+    currency_code      VARCHAR(10) NOT NULL,
     amount             NUMERIC(18,2),
     term_months        INT,
     monthly_payment    NUMERIC(18,2),
@@ -37,9 +39,13 @@ CREATE TABLE IF NOT EXISTS payments (
     loan_id         BIGINT REFERENCES loans(id),
     payment_date    TIMESTAMP,
     amount          NUMERIC(18,2),
+    currency_code   VARCHAR(10) NOT NULL,
     method          VARCHAR(32),           
     status          VARCHAR(32) DEFAULT 'PENDING',  
     transaction_id  VARCHAR(128),
     created_at      TIMESTAMP DEFAULT NOW()
 );
 
+CREATE INDEX idx_loan_applications_user ON loan_applications(user_id);
+CREATE INDEX idx_loans_user ON loans(user_id);
+CREATE INDEX idx_payments_loan ON payments(loan_id);

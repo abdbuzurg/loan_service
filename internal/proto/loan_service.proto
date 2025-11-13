@@ -11,44 +11,6 @@ message LoanServiceError {
   string description = 2;
 }
 
-// -------------------- Enums --------------------
-
-enum ApplicationType {
-  APPLICATION_TYPE_UNSPECIFIED = 0;
-  APPLICATION_TYPE_AUTO = 1;
-  APPLICATION_TYPE_PERSONAL = 2;
-}
-
-enum ApplicationStatus {
-  APPLICATION_STATUS_UNSPECIFIED = 0;
-  APPLICATION_STATUS_NEW = 1;
-  APPLICATION_STATUS_REVIEW = 2;
-  APPLICATION_STATUS_APPROVED = 3;
-  APPLICATION_STATUS_REJECTED = 4;
-}
-
-enum LoanStatus {
-  LOAN_STATUS_UNSPECIFIED = 0;
-  LOAN_STATUS_ACTIVE = 1;
-  LOAN_STATUS_PAID = 2;
-  LOAN_STATUS_OVERDUE = 3;
-}
-
-enum PaymentMethod {
-  PAYMENT_METHOD_UNSPECIFIED = 0;
-  PAYMENT_METHOD_WALLET = 1;
-  PAYMENT_METHOD_CARD = 2;
-  PAYMENT_METHOD_QR = 3;
-  PAYMENT_METHOD_AUTOPAY = 4;
-}
-
-enum PaymentStatus {
-  PAYMENT_STATUS_UNSPECIFIED = 0;
-  PAYMENT_STATUS_PENDING = 1;
-  PAYMENT_STATUS_CONFIRMED = 2;
-  PAYMENT_STATUS_FAILED = 3;
-}
-
 // -------------------- Core models --------------------
 message Vehicle {
   string vin = 1;
@@ -60,7 +22,7 @@ message Vehicle {
 message LoanApplication {
   string id = 1;
   string user_id = 2;
-  ApplicationType type = 3;
+  string type = 3;
   string vehicle_vin = 4;
   string vehicle_name = 5;
   string currency_code = 6;
@@ -70,7 +32,7 @@ message LoanApplication {
   double margin_rate = 10;
   int32 term_months = 11;
   int64 monthly_payment = 12;
-  ApplicationStatus status = 13;
+  string status = 13;
   string created_at = 14;
   string updated_at = 15;
 }
@@ -85,7 +47,7 @@ message Loan {
   int32 term_months = 7;
   int64 monthly_payment = 8;
   int64 remaining_balance = 9;
-  LoanStatus status = 10;
+  string status = 10;
   string created_at = 11;
 }
 
@@ -95,8 +57,8 @@ message Payment {
   string currency_code = 3;
   string payment_date = 4;
   int64 amount = 5;
-  PaymentMethod method = 6;
-  PaymentStatus status = 7;
+  string method = 6;
+  string status = 7;
   string transaction_id = 8;
   string created_at = 9;
 }
@@ -120,12 +82,12 @@ message PageResponse {
 //Application
 message CreateApplicationRequest {
   string user_id = 1;
-  ApplicationType type = 2;
+  string type = 2;
   string vehicle_vin = 3;
   string vehicle_name = 4;
   string currency_code = 5;
-  int64 price_minor = 6;
-  int64 down_payment_minor = 7;
+  int64 price = 6;
+  int64 down_payment = 7;
   int32 term_months = 8;
   double margin_rate = 9;
 }
@@ -161,15 +123,15 @@ message ListVehiclesResponse {
 // Calculator
 message CalculateRequest {
   string currency_code = 1;
-  int64 price_minor = 2;
-  int64 down_payment_minor = 3;
+  int64 price = 2;
+  int64 down_payment = 3;
   int32 term_months = 4;
   double margin_rate = 5;
 }
 message CalculateResponse {
-  int64 net_price_minor = 1;
-  int64 monthly_payment_minor = 2;
-  int64 total_amount_minor = 3;
+  int64 net_price = 1;
+  int64 monthly_payment = 2;
+  int64 total_amount = 3;
   LoanServiceError loan_service_error = 100;
 }
 
@@ -197,7 +159,7 @@ message CreatePaymentRequest {
   string loan_id = 1;
   string currency_code = 2;
   int64 amount = 3;
-  PaymentMethod method = 4;
+  string method = 4;
 }
 message CreatePaymentResponse {
   Payment payment = 1;
