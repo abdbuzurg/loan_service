@@ -76,10 +76,13 @@ func (x *LoanServiceError) GetDescription() string {
 // -------------------- Core models --------------------
 type Vehicle struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Vin           string                 `protobuf:"bytes,1,opt,name=vin,proto3" json:"vin,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Price         int64                  `protobuf:"varint,3,opt,name=price,proto3" json:"price,omitempty"`
-	CurrencyCode  string                 `protobuf:"bytes,4,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"` // "TJS", "USD"
+	ImageUrl      string                 `protobuf:"bytes,1,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	Vin           string                 `protobuf:"bytes,2,opt,name=vin,proto3" json:"vin,omitempty"`
+	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	EngineType    string                 `protobuf:"bytes,4,opt,name=engine_type,json=engineType,proto3" json:"engine_type,omitempty"`
+	Configuration string                 `protobuf:"bytes,5,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	CurrencyCode  string                 `protobuf:"bytes,7,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"` // "TJS", "USD"
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -114,6 +117,13 @@ func (*Vehicle) Descriptor() ([]byte, []int) {
 	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{1}
 }
 
+func (x *Vehicle) GetImageUrl() string {
+	if x != nil {
+		return x.ImageUrl
+	}
+	return ""
+}
+
 func (x *Vehicle) GetVin() string {
 	if x != nil {
 		return x.Vin
@@ -124,6 +134,20 @@ func (x *Vehicle) GetVin() string {
 func (x *Vehicle) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *Vehicle) GetEngineType() string {
+	if x != nil {
+		return x.EngineType
+	}
+	return ""
+}
+
+func (x *Vehicle) GetConfiguration() string {
+	if x != nil {
+		return x.Configuration
 	}
 	return ""
 }
@@ -652,18 +676,20 @@ func (x *PageResponse) GetTotalPages() int32 {
 
 // Application
 type CreateApplicationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-	VehicleVin    string                 `protobuf:"bytes,3,opt,name=vehicle_vin,json=vehicleVin,proto3" json:"vehicle_vin,omitempty"`
-	VehicleName   string                 `protobuf:"bytes,4,opt,name=vehicle_name,json=vehicleName,proto3" json:"vehicle_name,omitempty"`
-	CurrencyCode  string                 `protobuf:"bytes,5,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
-	Price         int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
-	DownPayment   int64                  `protobuf:"varint,7,opt,name=down_payment,json=downPayment,proto3" json:"down_payment,omitempty"`
-	TermMonths    int32                  `protobuf:"varint,8,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
-	MarginRate    float64                `protobuf:"fixed64,9,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	UserId         string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Type           string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	VehicleVin     string                 `protobuf:"bytes,3,opt,name=vehicle_vin,json=vehicleVin,proto3" json:"vehicle_vin,omitempty"`
+	VehicleName    string                 `protobuf:"bytes,4,opt,name=vehicle_name,json=vehicleName,proto3" json:"vehicle_name,omitempty"`
+	CurrencyCode   string                 `protobuf:"bytes,5,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
+	Price          int64                  `protobuf:"varint,6,opt,name=price,proto3" json:"price,omitempty"`
+	DownPayment    int64                  `protobuf:"varint,7,opt,name=down_payment,json=downPayment,proto3" json:"down_payment,omitempty"`
+	TermMonths     int32                  `protobuf:"varint,8,opt,name=term_months,json=termMonths,proto3" json:"term_months,omitempty"`
+	MarginRate     float64                `protobuf:"fixed64,9,opt,name=margin_rate,json=marginRate,proto3" json:"margin_rate,omitempty"`
+	NetPrice       int64                  `protobuf:"varint,10,opt,name=net_price,json=netPrice,proto3" json:"net_price,omitempty"`
+	MonthlyPayment int64                  `protobuf:"varint,11,opt,name=monthly_payment,json=monthlyPayment,proto3" json:"monthly_payment,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *CreateApplicationRequest) Reset() {
@@ -755,6 +781,20 @@ func (x *CreateApplicationRequest) GetTermMonths() int32 {
 func (x *CreateApplicationRequest) GetMarginRate() float64 {
 	if x != nil {
 		return x.MarginRate
+	}
+	return 0
+}
+
+func (x *CreateApplicationRequest) GetNetPrice() int64 {
+	if x != nil {
+		return x.NetPrice
+	}
+	return 0
+}
+
+func (x *CreateApplicationRequest) GetMonthlyPayment() int64 {
+	if x != nil {
+		return x.MonthlyPayment
 	}
 	return 0
 }
@@ -1701,12 +1741,16 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"!internal/proto/loan_service.proto\x12\x05proto\"H\n" +
 	"\x10LoanServiceError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\"j\n" +
-	"\aVehicle\x12\x10\n" +
-	"\x03vin\x18\x01 \x01(\tR\x03vin\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x03R\x05price\x12#\n" +
-	"\rcurrency_code\x18\x04 \x01(\tR\fcurrencyCode\"\xce\x03\n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\"\xce\x01\n" +
+	"\aVehicle\x12\x1b\n" +
+	"\timage_url\x18\x01 \x01(\tR\bimageUrl\x12\x10\n" +
+	"\x03vin\x18\x02 \x01(\tR\x03vin\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1f\n" +
+	"\vengine_type\x18\x04 \x01(\tR\n" +
+	"engineType\x12$\n" +
+	"\rconfiguration\x18\x05 \x01(\tR\rconfiguration\x12\x14\n" +
+	"\x05price\x18\x06 \x01(\x03R\x05price\x12#\n" +
+	"\rcurrency_code\x18\a \x01(\tR\fcurrencyCode\"\xce\x03\n" +
 	"\x0fLoanApplication\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x12\n" +
@@ -1765,7 +1809,7 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\vtotal_items\x18\x03 \x01(\x05R\n" +
 	"totalItems\x12\x1f\n" +
 	"\vtotal_pages\x18\x04 \x01(\x05R\n" +
-	"totalPages\"\xab\x02\n" +
+	"totalPages\"\xf1\x02\n" +
 	"\x18CreateApplicationRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04type\x18\x02 \x01(\tR\x04type\x12\x1f\n" +
@@ -1778,7 +1822,10 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\vterm_months\x18\b \x01(\x05R\n" +
 	"termMonths\x12\x1f\n" +
 	"\vmargin_rate\x18\t \x01(\x01R\n" +
-	"marginRate\"\x9c\x01\n" +
+	"marginRate\x12\x1b\n" +
+	"\tnet_price\x18\n" +
+	" \x01(\x03R\bnetPrice\x12'\n" +
+	"\x0fmonthly_payment\x18\v \x01(\x03R\x0emonthlyPayment\"\x9c\x01\n" +
 	"\x19CreateApplicationResponse\x128\n" +
 	"\vapplication\x18\x01 \x01(\v2\x16.proto.LoanApplicationR\vapplication\x12E\n" +
 	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"'\n" +

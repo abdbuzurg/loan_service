@@ -7,9 +7,7 @@ package repository
 
 import (
 	"context"
-	"database/sql"
-
-	"github.com/jackc/pgtype"
+	"time"
 )
 
 const countPayments = `-- name: CountPayments :one
@@ -18,7 +16,7 @@ from payments
 where loan_id = $1
 `
 
-func (q *Queries) CountPayments(ctx context.Context, loanID sql.NullInt64) (int64, error) {
+func (q *Queries) CountPayments(ctx context.Context, loanID int64) (int64, error) {
 	row := q.db.QueryRow(ctx, countPayments, loanID)
 	var count int64
 	err := row.Scan(&count)
@@ -40,12 +38,12 @@ INSERT INTO payments(
 `
 
 type CreatePaymentParams struct {
-	LoanID       sql.NullInt64  `json:"loan_id"`
-	CurrencyCode string         `json:"currency_code"`
-	PaymentDate  sql.NullTime   `json:"payment_date"`
-	Amount       pgtype.Numeric `json:"amount"`
-	Method       sql.NullString `json:"method"`
-	Status       sql.NullString `json:"status"`
+	LoanID       int64      `json:"loan_id"`
+	CurrencyCode string     `json:"currency_code"`
+	PaymentDate  *time.Time `json:"payment_date"`
+	Amount       *float64   `json:"amount"`
+	Method       *string    `json:"method"`
+	Status       *string    `json:"status"`
 }
 
 func (q *Queries) CreatePayment(ctx context.Context, arg CreatePaymentParams) (Payment, error) {
@@ -82,9 +80,9 @@ offset $3
 `
 
 type ListPaymentsByLoanParams struct {
-	LoanID sql.NullInt64 `json:"loan_id"`
-	Limit  int32         `json:"limit"`
-	Offset int32         `json:"offset"`
+	LoanID int64 `json:"loan_id"`
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
 }
 
 func (q *Queries) ListPaymentsByLoan(ctx context.Context, arg ListPaymentsByLoanParams) ([]Payment, error) {

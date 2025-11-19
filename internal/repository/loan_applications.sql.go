@@ -7,9 +7,6 @@ package repository
 
 import (
 	"context"
-	"database/sql"
-
-	"github.com/jackc/pgtype"
 )
 
 const countApplicationsByUser = `-- name: CountApplicationsByUser :one
@@ -47,15 +44,15 @@ INSERT INTO loan_applications(
 type CreateApplicationParams struct {
 	UserID         int64                 `json:"user_id"`
 	Type           ApplicationType       `json:"type"`
-	VehicleVin     sql.NullString        `json:"vehicle_vin"`
-	VehicleName    sql.NullString        `json:"vehicle_name"`
+	VehicleVin     *string               `json:"vehicle_vin"`
+	VehicleName    *string               `json:"vehicle_name"`
 	CurrencyCode   string                `json:"currency_code"`
-	Price          pgtype.Numeric        `json:"price"`
-	DownPayment    pgtype.Numeric        `json:"down_payment"`
-	NetPrice       pgtype.Numeric        `json:"net_price"`
-	MarginRate     pgtype.Numeric        `json:"margin_rate"`
-	TermMonths     sql.NullInt32         `json:"term_months"`
-	MonthlyPayment pgtype.Numeric        `json:"monthly_payment"`
+	Price          *float64              `json:"price"`
+	DownPayment    *float64              `json:"down_payment"`
+	NetPrice       *float64              `json:"net_price"`
+	MarginRate     *float64              `json:"margin_rate"`
+	TermMonths     *int64                `json:"term_months"`
+	MonthlyPayment *float64              `json:"monthly_payment"`
 	Status         NullApplicationStatus `json:"status"`
 }
 

@@ -13,10 +13,13 @@ message LoanServiceError {
 
 // -------------------- Core models --------------------
 message Vehicle {
-  string vin = 1;
-  string name = 2;
-  int64 price = 3;
-  string currency_code = 4; // "TJS", "USD"
+  string image_url = 1;
+  string vin = 2;
+  string name = 3;
+  string engine_type = 4;
+  string configuration = 5;
+  int64 price = 6;
+  string currency_code = 7; // "TJS", "USD"
 }
 
 message LoanApplication {
@@ -90,6 +93,8 @@ message CreateApplicationRequest {
   int64 down_payment = 7;
   int32 term_months = 8;
   double margin_rate = 9;
+  int64 net_price = 10;
+  int64 monthly_payment = 11;
 }
 message CreateApplicationResponse {
   LoanApplication application = 1;

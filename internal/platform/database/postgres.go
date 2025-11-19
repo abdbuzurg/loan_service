@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/spf13/viper"
 )
 
@@ -19,7 +19,7 @@ func NewPostgresConnection() (*pgxpool.Pool, error) {
 		viper.GetString("postgresql.sslmode"),
 	)
 
-	pool, err := pgxpool.Connect(context.Background(), connStr)
+	pool, err := pgxpool.New(context.Background(), connStr)
 	if err != nil {
 		return nil, fmt.Errorf("unable to connect to database: %v", err)
 	}

@@ -5,11 +5,9 @@
 package repository
 
 import (
-	"database/sql"
 	"database/sql/driver"
 	"fmt"
-
-	"github.com/jackc/pgtype"
+	"time"
 )
 
 type ApplicationStatus string
@@ -143,44 +141,44 @@ func (ns NullLoanStatus) Value() (driver.Value, error) {
 
 type Loan struct {
 	ID               int64          `json:"id"`
-	ApplicationID    sql.NullInt64  `json:"application_id"`
+	ApplicationID    int64          `json:"application_id"`
 	UserID           int64          `json:"user_id"`
-	VehicleVin       sql.NullString `json:"vehicle_vin"`
+	VehicleVin       *string        `json:"vehicle_vin"`
 	CurrencyCode     string         `json:"currency_code"`
-	Amount           pgtype.Numeric `json:"amount"`
-	TermMonths       sql.NullInt32  `json:"term_months"`
-	MonthlyPayment   pgtype.Numeric `json:"monthly_payment"`
-	RemainingBalance pgtype.Numeric `json:"remaining_balance"`
+	Amount           *float64       `json:"amount"`
+	TermMonths       *int64         `json:"term_months"`
+	MonthlyPayment   *float64       `json:"monthly_payment"`
+	RemainingBalance *float64       `json:"remaining_balance"`
 	Status           NullLoanStatus `json:"status"`
-	CreatedAt        sql.NullTime   `json:"created_at"`
+	CreatedAt        *time.Time     `json:"created_at"`
 }
 
 type LoanApplication struct {
 	ID             int64                 `json:"id"`
 	UserID         int64                 `json:"user_id"`
 	Type           ApplicationType       `json:"type"`
-	VehicleVin     sql.NullString        `json:"vehicle_vin"`
-	VehicleName    sql.NullString        `json:"vehicle_name"`
+	VehicleVin     *string               `json:"vehicle_vin"`
+	VehicleName    *string               `json:"vehicle_name"`
 	CurrencyCode   string                `json:"currency_code"`
-	Price          pgtype.Numeric        `json:"price"`
-	DownPayment    pgtype.Numeric        `json:"down_payment"`
-	NetPrice       pgtype.Numeric        `json:"net_price"`
-	MarginRate     pgtype.Numeric        `json:"margin_rate"`
-	TermMonths     sql.NullInt32         `json:"term_months"`
-	MonthlyPayment pgtype.Numeric        `json:"monthly_payment"`
+	Price          *float64              `json:"price"`
+	DownPayment    *float64              `json:"down_payment"`
+	NetPrice       *float64              `json:"net_price"`
+	MarginRate     *float64              `json:"margin_rate"`
+	TermMonths     *int64                `json:"term_months"`
+	MonthlyPayment *float64              `json:"monthly_payment"`
 	Status         NullApplicationStatus `json:"status"`
-	CreatedAt      sql.NullTime          `json:"created_at"`
-	UpdatedAt      sql.NullTime          `json:"updated_at"`
+	CreatedAt      *time.Time            `json:"created_at"`
+	UpdatedAt      *time.Time            `json:"updated_at"`
 }
 
 type Payment struct {
-	ID            int64          `json:"id"`
-	LoanID        sql.NullInt64  `json:"loan_id"`
-	PaymentDate   sql.NullTime   `json:"payment_date"`
-	Amount        pgtype.Numeric `json:"amount"`
-	CurrencyCode  string         `json:"currency_code"`
-	Method        sql.NullString `json:"method"`
-	Status        sql.NullString `json:"status"`
-	TransactionID sql.NullString `json:"transaction_id"`
-	CreatedAt     sql.NullTime   `json:"created_at"`
+	ID            int64      `json:"id"`
+	LoanID        int64      `json:"loan_id"`
+	PaymentDate   *time.Time `json:"payment_date"`
+	Amount        *float64   `json:"amount"`
+	CurrencyCode  string     `json:"currency_code"`
+	Method        *string    `json:"method"`
+	Status        *string    `json:"status"`
+	TransactionID *string    `json:"transaction_id"`
+	CreatedAt     *time.Time `json:"created_at"`
 }

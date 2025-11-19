@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS loan_applications  (
 
 CREATE TABLE IF NOT EXISTS loans (
     id                 BIGSERIAL PRIMARY KEY,
-    application_id     BIGINT REFERENCES loan_applications(id),
+    application_id     BIGINT REFERENCES loan_applications(id) NOT NULL,
     user_id            BIGINT NOT NULL,
     vehicle_vin        VARCHAR(32),
     currency_code      VARCHAR(10) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS loans (
 
 CREATE TABLE IF NOT EXISTS payments (
     id              BIGSERIAL PRIMARY KEY,
-    loan_id         BIGINT REFERENCES loans(id),
+    loan_id         BIGINT REFERENCES loans(id) NOT NULL,
     payment_date    TIMESTAMP,
     amount          NUMERIC(18,2),
     currency_code   VARCHAR(10) NOT NULL,
