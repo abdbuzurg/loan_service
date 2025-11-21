@@ -34,18 +34,5 @@ CREATE TABLE IF NOT EXISTS loans (
     created_at         TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS payments (
-    id              BIGSERIAL PRIMARY KEY,
-    loan_id         BIGINT REFERENCES loans(id) NOT NULL,
-    payment_date    TIMESTAMP,
-    amount          NUMERIC(18,2),
-    currency_code   VARCHAR(10) NOT NULL,
-    method          VARCHAR(32),           
-    status          VARCHAR(32) DEFAULT 'PENDING',  
-    transaction_id  VARCHAR(128),
-    created_at      TIMESTAMP DEFAULT NOW()
-);
-
 CREATE INDEX idx_loan_applications_user ON loan_applications(user_id);
 CREATE INDEX idx_loans_user ON loans(user_id);
-CREATE INDEX idx_payments_loan ON payments(loan_id);

@@ -26,7 +26,6 @@ const (
 	LoansService_Calculate_FullMethodName         = "/loanpb.LoansService/Calculate"
 	LoansService_GetLoan_FullMethodName           = "/loanpb.LoansService/GetLoan"
 	LoansService_ListLoans_FullMethodName         = "/loanpb.LoansService/ListLoans"
-	LoansService_ListPayments_FullMethodName      = "/loanpb.LoansService/ListPayments"
 )
 
 // LoansServiceClient is the client API for LoansService service.
@@ -44,8 +43,6 @@ type LoansServiceClient interface {
 	// Loans
 	GetLoan(ctx context.Context, in *GetLoanRequest, opts ...grpc.CallOption) (*GetLoanResponse, error)
 	ListLoans(ctx context.Context, in *ListLoansRequest, opts ...grpc.CallOption) (*ListLoansResponse, error)
-	// Payments
-	ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error)
 }
 
 type loansServiceClient struct {
@@ -126,16 +123,6 @@ func (c *loansServiceClient) ListLoans(ctx context.Context, in *ListLoansRequest
 	return out, nil
 }
 
-func (c *loansServiceClient) ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPaymentsResponse)
-	err := c.cc.Invoke(ctx, LoansService_ListPayments_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // LoansServiceServer is the server API for LoansService service.
 // All implementations must embed UnimplementedLoansServiceServer
 // for forward compatibility.
@@ -151,8 +138,6 @@ type LoansServiceServer interface {
 	// Loans
 	GetLoan(context.Context, *GetLoanRequest) (*GetLoanResponse, error)
 	ListLoans(context.Context, *ListLoansRequest) (*ListLoansResponse, error)
-	// Payments
-	ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error)
 	mustEmbedUnimplementedLoansServiceServer()
 }
 
@@ -183,9 +168,6 @@ func (UnimplementedLoansServiceServer) GetLoan(context.Context, *GetLoanRequest)
 }
 func (UnimplementedLoansServiceServer) ListLoans(context.Context, *ListLoansRequest) (*ListLoansResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLoans not implemented")
-}
-func (UnimplementedLoansServiceServer) ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPayments not implemented")
 }
 func (UnimplementedLoansServiceServer) mustEmbedUnimplementedLoansServiceServer() {}
 func (UnimplementedLoansServiceServer) testEmbeddedByValue()                      {}
@@ -334,24 +316,6 @@ func _LoansService_ListLoans_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LoansService_ListPayments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPaymentsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LoansServiceServer).ListPayments(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: LoansService_ListPayments_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LoansServiceServer).ListPayments(ctx, req.(*ListPaymentsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // LoansService_ServiceDesc is the grpc.ServiceDesc for LoansService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -386,10 +350,6 @@ var LoansService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListLoans",
 			Handler:    _LoansService_ListLoans_Handler,
-		},
-		{
-			MethodName: "ListPayments",
-			Handler:    _LoansService_ListPayments_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

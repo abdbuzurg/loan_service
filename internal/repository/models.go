@@ -170,15 +170,3 @@ type LoanApplication struct {
 	CreatedAt      *time.Time            `json:"created_at"`
 	UpdatedAt      *time.Time            `json:"updated_at"`
 }
-
-type Payment struct {
-	ID            int64      `json:"id"`
-	LoanID        int64      `json:"loan_id"`
-	PaymentDate   *time.Time `json:"payment_date"`
-	Amount        *float64   `json:"amount"`
-	CurrencyCode  string     `json:"currency_code"`
-	Method        *string    `json:"method"`
-	Status        *string    `json:"status"`
-	TransactionID *string    `json:"transaction_id"`
-	CreatedAt     *time.Time `json:"created_at"`
-}

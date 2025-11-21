@@ -23,8 +23,8 @@ message Vehicle {
 }
 
 message LoanApplication {
-  string id = 1;
-  string user_id = 2;
+  int64 id = 1;
+  int64 user_id = 2;
   string type = 3;
   string vehicle_vin = 4;
   string vehicle_name = 5;
@@ -41,9 +41,9 @@ message LoanApplication {
 }
 
 message Loan {
-  string id = 1;
-  string application_id = 2;
-  string user_id = 3;
+  int64 id = 1;
+  int64 application_id = 2;
+  int64 user_id = 3;
   string currency_code = 4;
   string vehicle_vin = 5;
   int64 amount = 6;
@@ -53,19 +53,6 @@ message Loan {
   string status = 10;
   string created_at = 11;
 }
-
-message Payment {
-  string id = 1;
-  string loan_id = 2;
-  string currency_code = 3;
-  string payment_date = 4;
-  int64 amount = 5;
-  string method = 6;
-  string status = 7;
-  string transaction_id = 8;
-  string created_at = 9;
-}
-
 // -------------------- Pagination --------------------
 
 message PageRequest {
@@ -84,7 +71,7 @@ message PageResponse {
 
 //Application
 message CreateApplicationRequest {
-  string user_id = 1;
+  int64 user_id = 1;
   string type = 2;
   string vehicle_vin = 3;
   string vehicle_name = 4;
@@ -109,7 +96,7 @@ message GetApplicationResponse {
 }
 
 message ListApplicationsRequest {
-  string user_id = 1;
+  int64 user_id = 1;
   PageRequest page = 2;
 }
 
@@ -150,22 +137,11 @@ message GetLoanResponse {
 }
 
 message ListLoansRequest {
-  string user_id = 1;
+  int64 user_id = 1;
   PageRequest page = 2;
 }
 message ListLoansResponse {
   repeated Loan loans = 1;
-  PageResponse page = 2;
-  LoanServiceError loan_service_error = 100;
-}
-
-// Payments
-message ListPaymentsRequest {
-  string loan_id = 1;
-  PageRequest page = 2;
-}
-message ListPaymentsResponse {
-  repeated Payment payments = 1;
   PageResponse page = 2;
   LoanServiceError loan_service_error = 100;
 }
@@ -187,7 +163,4 @@ service LoansService {
   // Loans
   rpc GetLoan(GetLoanRequest) returns (GetLoanResponse);
   rpc ListLoans(ListLoansRequest) returns (ListLoansResponse);
-
-  // Payments
-  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }

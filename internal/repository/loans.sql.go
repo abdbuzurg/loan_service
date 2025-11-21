@@ -12,7 +12,7 @@ import (
 const countLoansByUser = `-- name: CountLoansByUser :one
 select count(*)
 from loans
-where user_id = $1
+where user_id = $1 and status = 'ACTIVE'
 `
 
 func (q *Queries) CountLoansByUser(ctx context.Context, userID int64) (int64, error) {
@@ -50,7 +50,7 @@ func (q *Queries) GetLoan(ctx context.Context, id int64) (Loan, error) {
 const listLoansByUser = `-- name: ListLoansByUser :many
 select id, application_id, user_id, vehicle_vin, currency_code, amount, term_months, monthly_payment, remaining_balance, status, created_at
 from loans
-where user_id = $1
+where user_id = $1 and status = 'ACTIVE'
 order by id desc
 limit $2
 offset $3
