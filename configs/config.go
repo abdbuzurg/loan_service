@@ -34,14 +34,19 @@ type RabbitMQConfig struct {
 }
 
 type ClientsConfig struct {
-	KoinotAuto HTTPClientConfig `mapstructure:"koinot_auto"`
-	AsrLeasing HTTPClientConfig `mapstructure:"asr_leasing"`
+	KoinotAuto     HTTPClientConfig `mapstructure:"koinot_auto"`
+	AsrLeasing     HTTPClientConfig `mapstructure:"asr_leasing"`
+	PaymentService GRPCClientConfig `mapstructure:"payment_service"`
 }
 
 type HTTPClientConfig struct {
 	BaseURL string `mapstructure:"base_url"`
 	Token   string `mapstructure:"token"`
 	Timeout string `mapstructure:"timeout"`
+}
+
+type GRPCClientConfig struct {
+	GRPCPort string `mapstructure:"grpc_port"`
 }
 
 func LoadConfig(path string) (Config, error) {

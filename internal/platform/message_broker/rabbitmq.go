@@ -2,18 +2,18 @@ package messagebroker
 
 import (
 	"fmt"
+	"loan_service/configs"
 	"log"
 
 	"github.com/rabbitmq/amqp091-go"
-	"github.com/spf13/viper"
 )
 
-func NewRabbitMQConnection() (*amqp091.Connection, error) {
+func NewRabbitMQConnection(cfg configs.RabbitMQConfig) (*amqp091.Connection, error) {
 	connURL := fmt.Sprintf("amqp://%s:%s@%s:%s/",
-		viper.GetString("rabbitmq.user"),
-		viper.GetString("rabbitmq.password"),
-		viper.GetString("rabbitmq.host"),
-		viper.GetString("rabbitmq.port"),
+		cfg.User,
+		cfg.Password,
+		cfg.Host,
+		cfg.Port,
 	)
 
 	conn, err := amqp091.Dial(connURL)

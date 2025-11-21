@@ -6,14 +6,14 @@ import (
 	"errors"
 	"fmt"
 	"loan_service/internal/dto"
-	"loan_service/internal/proto"
+	loanpb "loan_service/internal/proto/loan"
 	"loan_service/internal/usecase"
 	"strconv"
 	"time"
 )
 
 type LoanHandler struct {
-	proto.UnimplementedLoansServiceServer
+	loanpb.UnimplementedLoansServiceServer
 	loanUC *usecase.LoanUsecase
 }
 
@@ -23,14 +23,14 @@ func New(loanUC *usecase.LoanUsecase) *LoanHandler {
 	}
 }
 
-func ok() *proto.LoanServiceError {
-	return &proto.LoanServiceError{
+func ok() *loanpb.LoanServiceError {
+	return &loanpb.LoanServiceError{
 		Code:        0,
 		Description: "",
 	}
 }
 
-func pageToLimitOffset(p *proto.PageRequest) (limit, offset int32) {
+func pageToLimitOffset(p *loanpb.PageRequest) (limit, offset int32) {
 	page, limitIn := int32(1), int32(20)
 	if p != nil {
 		if p.Page > 0 {
@@ -46,7 +46,7 @@ func pageToLimitOffset(p *proto.PageRequest) (limit, offset int32) {
 	return limitIn, offset
 }
 
-func (h *LoanHandler) Calculate(ctx context.Context, calculateRequest *proto.CalculateRequest) (*proto.CalculateResponse, error) {
+func (h *LoanHandler) Calculate(ctx context.Context, calculateRequest *loanpb.CalculateRequest) (*loanpb.CalculateResponse, error) {
 	net, monthly, total := h.loanUC.Calculate(
 		calculateRequest.Price,
 		calculateRequest.DownPayment,
@@ -54,7 +54,7 @@ func (h *LoanHandler) Calculate(ctx context.Context, calculateRequest *proto.Cal
 		calculateRequest.MarginRate,
 	)
 
-	return &proto.CalculateResponse{
+	return &loanpb.CalculateResponse{
 		NetPrice:         net,
 		MonthlyPayment:   monthly,
 		TotalAmount:      total,
@@ -62,11 +62,11 @@ func (h *LoanHandler) Calculate(ctx context.Context, calculateRequest *proto.Cal
 	}, nil
 }
 
-func (h *LoanHandler) CreateApplication(ctx context.Context, req *proto.CreateApplicationRequest) (*proto.CreateApplicationResponse, error) {
+func (h *LoanHandler) CreateApplication(ctx context.Context, req *loanpb.CreateApplicationRequest) (*loanpb.CreateApplicationResponse, error) {
 	userId, err := strconv.ParseInt(req.GetUserId(), 10, 64)
 	if err != nil {
-		return &proto.CreateApplicationResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.CreateApplicationResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "user id is required",
 			},
@@ -89,16 +89,16 @@ func (h *LoanHandler) CreateApplication(ctx context.Context, req *proto.CreateAp
 		Status:         "NEW",
 	})
 	if err != nil {
-		return &proto.CreateApplicationResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.CreateApplicationResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to create loan application",
 			},
 		}, nil
 	}
 
-	return &proto.CreateApplicationResponse{
-		Application: &proto.LoanApplication{
+	return &loanpb.CreateApplicationResponse{
+		Application: &loanpb.LoanApplication{
 			Id:             fmt.Sprint(createdLoanApp.Id),
 			UserId:         fmt.Sprint(createdLoanApp.UserId),
 			Type:           createdLoanApp.Type,
@@ -119,14 +119,10 @@ func (h *LoanHandler) CreateApplication(ctx context.Context, req *proto.CreateAp
 	}, nil
 }
 
-func (h *LoanHandler) CreatePayment(context.Context, *proto.CreatePaymentRequest) (*proto.CreatePaymentResponse, error) {
-	return nil, nil
-}
-
-func (h *LoanHandler) GetApplication(ctx context.Context, req *proto.GetApplicationRequest) (*proto.GetApplicationResponse, error) {
+func (h *LoanHandler) GetApplication(ctx context.Context, req *loanpb.GetApplicationRequest) (*loanpb.GetApplicationResponse, error) {
 	if req.GetId() == "" {
-		return &proto.GetApplicationResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetApplicationResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "id is required",
 			},
@@ -135,8 +131,8 @@ func (h *LoanHandler) GetApplication(ctx context.Context, req *proto.GetApplicat
 
 	loanAppId, err := strconv.ParseInt(req.GetId(), 10, 64)
 	if err != nil {
-		return &proto.GetApplicationResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetApplicationResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: fmt.Sprintf("invalid id %q", req.GetId()),
 			},
@@ -147,8 +143,8 @@ func (h *LoanHandler) GetApplication(ctx context.Context, req *proto.GetApplicat
 	if err != nil {
 		// Not found
 		if errors.Is(err, sql.ErrNoRows) {
-			return &proto.GetApplicationResponse{
-				LoanServiceError: &proto.LoanServiceError{
+			return &loanpb.GetApplicationResponse{
+				LoanServiceError: &loanpb.LoanServiceError{
 					Code:        2,
 					Description: "application not found",
 				},
@@ -156,16 +152,16 @@ func (h *LoanHandler) GetApplication(ctx context.Context, req *proto.GetApplicat
 		}
 
 		// Internal Error
-		return &proto.GetApplicationResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetApplicationResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch application",
 			},
 		}, nil
 	}
 
-	return &proto.GetApplicationResponse{
-		Application: &proto.LoanApplication{
+	return &loanpb.GetApplicationResponse{
+		Application: &loanpb.LoanApplication{
 			Id:             fmt.Sprint(loanApplication.Id),
 			UserId:         fmt.Sprint(loanApplication.UserId),
 			Type:           loanApplication.Type,
@@ -186,10 +182,10 @@ func (h *LoanHandler) GetApplication(ctx context.Context, req *proto.GetApplicat
 	}, nil
 }
 
-func (h *LoanHandler) GetLoan(ctx context.Context, req *proto.GetLoanRequest) (*proto.GetLoanResponse, error) {
+func (h *LoanHandler) GetLoan(ctx context.Context, req *loanpb.GetLoanRequest) (*loanpb.GetLoanResponse, error) {
 	if req.GetId() == "" {
-		return &proto.GetLoanResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetLoanResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "id is required",
 			},
@@ -198,8 +194,8 @@ func (h *LoanHandler) GetLoan(ctx context.Context, req *proto.GetLoanRequest) (*
 
 	loanId, err := strconv.ParseInt(req.GetId(), 10, 64)
 	if err != nil {
-		return &proto.GetLoanResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetLoanResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: fmt.Sprintf("invalid id %q", req.GetId()),
 			},
@@ -210,8 +206,8 @@ func (h *LoanHandler) GetLoan(ctx context.Context, req *proto.GetLoanRequest) (*
 	if err != nil {
 		// Not found
 		if errors.Is(err, sql.ErrNoRows) {
-			return &proto.GetLoanResponse{
-				LoanServiceError: &proto.LoanServiceError{
+			return &loanpb.GetLoanResponse{
+				LoanServiceError: &loanpb.LoanServiceError{
 					Code:        2,
 					Description: "loan not found",
 				},
@@ -219,16 +215,16 @@ func (h *LoanHandler) GetLoan(ctx context.Context, req *proto.GetLoanRequest) (*
 		}
 
 		//Internal errro
-		return &proto.GetLoanResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.GetLoanResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan",
 			},
 		}, nil
 	}
 
-	return &proto.GetLoanResponse{
-		Loan: &proto.Loan{
+	return &loanpb.GetLoanResponse{
+		Loan: &loanpb.Loan{
 			Id:               fmt.Sprint(loan.Id),
 			ApplicationId:    fmt.Sprint(loan.ApplicationId),
 			UserId:           fmt.Sprint(loan.UserId),
@@ -245,10 +241,10 @@ func (h *LoanHandler) GetLoan(ctx context.Context, req *proto.GetLoanRequest) (*
 	}, nil
 }
 
-func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListApplicationsRequest) (*proto.ListApplicationsResponse, error) {
+func (h *LoanHandler) ListApplications(ctx context.Context, req *loanpb.ListApplicationsRequest) (*loanpb.ListApplicationsResponse, error) {
 	if req.GetUserId() == "" {
-		return &proto.ListApplicationsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListApplicationsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "user id is required",
 			},
@@ -257,8 +253,8 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 
 	userId, err := strconv.ParseInt(req.GetUserId(), 10, 64)
 	if err != nil {
-		return &proto.ListApplicationsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListApplicationsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: fmt.Sprintf("invalid user id %q", req.GetUserId()),
 			},
@@ -270,8 +266,8 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 
 	loanAppsCount, err := h.loanUC.CountApplications(ctx, userId)
 	if err != nil {
-		return &proto.ListApplicationsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListApplicationsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applicaitons",
 			},
@@ -279,9 +275,9 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 	}
 
 	if *loanAppsCount == 0 {
-		return &proto.ListApplicationsResponse{
+		return &loanpb.ListApplicationsResponse{
 			Applications: nil,
-			Page: &proto.PageResponse{
+			Page: &loanpb.PageResponse{
 				CurrentPage: pageInfo.Page,
 				Limit:       pageInfo.Page,
 				TotalItems:  0,
@@ -295,8 +291,8 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 	if err != nil {
 		// Not found
 		if errors.Is(err, sql.ErrNoRows) {
-			return &proto.ListApplicationsResponse{
-				LoanServiceError: &proto.LoanServiceError{
+			return &loanpb.ListApplicationsResponse{
+				LoanServiceError: &loanpb.LoanServiceError{
 					Code:        2,
 					Description: "loan applications for user not found",
 				},
@@ -304,17 +300,17 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 		}
 
 		// Internal error
-		return &proto.ListApplicationsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListApplicationsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applications",
 			},
 		}, nil
 	}
 
-	listLoanAppsPB := make([]*proto.LoanApplication, len(loanApps))
+	listLoanAppsPB := make([]*loanpb.LoanApplication, len(loanApps))
 	for index, loanApp := range loanApps {
-		listLoanAppsPB[index] = &proto.LoanApplication{
+		listLoanAppsPB[index] = &loanpb.LoanApplication{
 			Id:             fmt.Sprint(loanApp.Id),
 			UserId:         fmt.Sprint(loanApp.UserId),
 			Type:           loanApp.Type,
@@ -337,9 +333,9 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 	if *loanAppsCount%int64(pageInfo.Limit) != 0 {
 		totalPages++
 	}
-	return &proto.ListApplicationsResponse{
+	return &loanpb.ListApplicationsResponse{
 		Applications: listLoanAppsPB,
-		Page: &proto.PageResponse{
+		Page: &loanpb.PageResponse{
 			CurrentPage: pageInfo.Page,
 			Limit:       pageInfo.Limit,
 			TotalItems:  int32(*loanAppsCount),
@@ -349,10 +345,10 @@ func (h *LoanHandler) ListApplications(ctx context.Context, req *proto.ListAppli
 	}, nil
 }
 
-func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest) (*proto.ListLoansResponse, error) {
+func (h *LoanHandler) ListLoans(ctx context.Context, req *loanpb.ListLoansRequest) (*loanpb.ListLoansResponse, error) {
 	if req.GetUserId() == "" {
-		return &proto.ListLoansResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListLoansResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "user id is required",
 			},
@@ -361,8 +357,8 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 
 	userId, err := strconv.ParseInt(req.GetUserId(), 10, 64)
 	if err != nil {
-		return &proto.ListLoansResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListLoansResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: fmt.Sprintf("invalid user id %q", req.GetUserId()),
 			},
@@ -374,8 +370,8 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 
 	loansCount, err := h.loanUC.CountLoans(ctx, userId)
 	if err != nil {
-		return &proto.ListLoansResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListLoansResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applicaitons",
 			},
@@ -383,9 +379,9 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 	}
 
 	if *loansCount == 0 {
-		return &proto.ListLoansResponse{
+		return &loanpb.ListLoansResponse{
 			Loans: nil,
-			Page: &proto.PageResponse{
+			Page: &loanpb.PageResponse{
 				CurrentPage: pageInfo.Page,
 				Limit:       pageInfo.Page,
 				TotalItems:  0,
@@ -399,8 +395,8 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 	if err != nil {
 		// Not found
 		if errors.Is(err, sql.ErrNoRows) {
-			return &proto.ListLoansResponse{
-				LoanServiceError: &proto.LoanServiceError{
+			return &loanpb.ListLoansResponse{
+				LoanServiceError: &loanpb.LoanServiceError{
 					Code:        2,
 					Description: "loans for user not found",
 				},
@@ -408,17 +404,17 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 		}
 
 		// Internal error
-		return &proto.ListLoansResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListLoansResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applications",
 			},
 		}, nil
 	}
 
-	listLoansPB := make([]*proto.Loan, len(loans))
+	listLoansPB := make([]*loanpb.Loan, len(loans))
 	for index, loan := range loans {
-		listLoansPB[index] = &proto.Loan{
+		listLoansPB[index] = &loanpb.Loan{
 			Id:               fmt.Sprint(loan.Id),
 			ApplicationId:    fmt.Sprint(loan.ApplicationId),
 			UserId:           fmt.Sprint(loan.UserId),
@@ -437,9 +433,9 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 	if *loansCount%int64(pageInfo.Limit) != 0 {
 		totalPages++
 	}
-	return &proto.ListLoansResponse{
+	return &loanpb.ListLoansResponse{
 		Loans: listLoansPB,
-		Page: &proto.PageResponse{
+		Page: &loanpb.PageResponse{
 			CurrentPage: pageInfo.Page,
 			Limit:       pageInfo.Limit,
 			TotalItems:  int32(*loansCount),
@@ -449,10 +445,10 @@ func (h *LoanHandler) ListLoans(ctx context.Context, req *proto.ListLoansRequest
 	}, nil
 }
 
-func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsRequest) (*proto.ListPaymentsResponse, error) {
+func (h *LoanHandler) ListPayments(ctx context.Context, req *loanpb.ListPaymentsRequest) (*loanpb.ListPaymentsResponse, error) {
 	if req.GetLoanId() == "" {
-		return &proto.ListPaymentsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListPaymentsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: "user id is required",
 			},
@@ -461,8 +457,8 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 
 	loanId, err := strconv.ParseInt(req.GetLoanId(), 10, 64)
 	if err != nil {
-		return &proto.ListPaymentsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListPaymentsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        1,
 				Description: fmt.Sprintf("invalid loan id %q", req.GetLoanId()),
 			},
@@ -474,8 +470,8 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 
 	paymentsCount, err := h.loanUC.CountPayments(ctx, loanId)
 	if err != nil {
-		return &proto.ListPaymentsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListPaymentsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applicaitons",
 			},
@@ -483,9 +479,9 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 	}
 
 	if *paymentsCount == 0 {
-		return &proto.ListPaymentsResponse{
+		return &loanpb.ListPaymentsResponse{
 			Payments: nil,
-			Page: &proto.PageResponse{
+			Page: &loanpb.PageResponse{
 				CurrentPage: pageInfo.Page,
 				Limit:       pageInfo.Page,
 				TotalItems:  0,
@@ -499,8 +495,8 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 	if err != nil {
 		// Not found
 		if errors.Is(err, sql.ErrNoRows) {
-			return &proto.ListPaymentsResponse{
-				LoanServiceError: &proto.LoanServiceError{
+			return &loanpb.ListPaymentsResponse{
+				LoanServiceError: &loanpb.LoanServiceError{
 					Code:        2,
 					Description: "loans for user not found",
 				},
@@ -508,17 +504,17 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 		}
 
 		// Internal error
-		return &proto.ListPaymentsResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListPaymentsResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to fetch loan applications",
 			},
 		}, nil
 	}
 
-	listPaymentsPB := make([]*proto.Payment, len(payments))
+	listPaymentsPB := make([]*loanpb.Payment, len(payments))
 	for index, payment := range payments {
-		listPaymentsPB[index] = &proto.Payment{
+		listPaymentsPB[index] = &loanpb.Payment{
 			Id:            fmt.Sprint(payment.Id),
 			LoanId:        fmt.Sprint(payment.LoanId),
 			CurrencyCode:  payment.CurrencyCode,
@@ -535,9 +531,9 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 	if *paymentsCount%int64(pageInfo.Limit) != 0 {
 		totalPages++
 	}
-	return &proto.ListPaymentsResponse{
+	return &loanpb.ListPaymentsResponse{
 		Payments: listPaymentsPB,
-		Page: &proto.PageResponse{
+		Page: &loanpb.PageResponse{
 			CurrentPage: pageInfo.Page,
 			Limit:       pageInfo.Limit,
 			TotalItems:  int32(*paymentsCount),
@@ -547,20 +543,20 @@ func (h *LoanHandler) ListPayments(ctx context.Context, req *proto.ListPaymentsR
 	}, nil
 }
 
-func (h *LoanHandler) ListVehicles(ctx context.Context, req *proto.ListVehiclesRequest) (*proto.ListVehiclesResponse, error) {
+func (h *LoanHandler) ListVehicles(ctx context.Context, req *loanpb.ListVehiclesRequest) (*loanpb.ListVehiclesResponse, error) {
 	vehicles, err := h.loanUC.ListVehicles(ctx)
 	if err != nil {
-		return &proto.ListVehiclesResponse{
-			LoanServiceError: &proto.LoanServiceError{
+		return &loanpb.ListVehiclesResponse{
+			LoanServiceError: &loanpb.LoanServiceError{
 				Code:        5,
 				Description: "failed to get vehicles",
 			},
 		}, nil
 	}
 
-	vehiclesPB := make([]*proto.Vehicle, len(vehicles))
+	vehiclesPB := make([]*loanpb.Vehicle, len(vehicles))
 	for index, vehicle := range vehicles {
-		vehiclesPB[index] = &proto.Vehicle{
+		vehiclesPB[index] = &loanpb.Vehicle{
 			ImageUrl:      vehicle.ImageURL,
 			Vin:           vehicle.Vin,
 			Name:          vehicle.Name,
@@ -571,7 +567,7 @@ func (h *LoanHandler) ListVehicles(ctx context.Context, req *proto.ListVehiclesR
 		}
 	}
 
-	return &proto.ListVehiclesResponse{
+	return &loanpb.ListVehiclesResponse{
 		Vehicles:         vehiclesPB,
 		LoanServiceError: ok(),
 	}, nil

@@ -1,16 +1,14 @@
 package clients
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"loan_service/configs"
 	"loan_service/internal/dto"
 	"net/http"
-	"strings"
 	"time"
-
-	"github.com/google/go-querystring/query"
 )
 
 type KoinotAutoClient struct {
@@ -60,9 +58,11 @@ func (c *KoinotAutoClient) ListVehicles(ctx context.Context) ([]dto.Vehicle, err
 
 func (c *KoinotAutoClient) SendLoanApplication(ctx context.Context, loanApp *dto.LoanApplication) error {
 
-	v, _ := query.Values(loanApp)
-	body := v.Encode()
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, c.baseURL+"/loan-application", strings.NewReader(body))
+	jsonData, err := json.Marshal(loanApp)
+	if err != nil {
+		return fmt.Errorf("could not marshall request body: %w", err)
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, c.baseURL+"/loan-application", bytes.NewBuffer(jsonData))
 	if err != nil {
 		return fmt.Errorf("failed to create request:: %w", err)
 	}

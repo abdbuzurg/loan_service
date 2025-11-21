@@ -27,3 +27,6 @@ clients:
     base_url: "http://api.asr-leasing.tj/v1"
     token: "1c-asr-leasing-token"
     timeout: "10s"
+
+  payment_service: 
+    grpc_port: "50052"

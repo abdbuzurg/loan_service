@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: internal/proto/loan_service.proto
+// source: internal/proto/loan/loan_service.proto
 
-package proto
+package loanpb
 
 import (
 	context "context"
@@ -19,15 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	LoansService_CreateApplication_FullMethodName = "/proto.LoansService/CreateApplication"
-	LoansService_GetApplication_FullMethodName    = "/proto.LoansService/GetApplication"
-	LoansService_ListApplications_FullMethodName  = "/proto.LoansService/ListApplications"
-	LoansService_ListVehicles_FullMethodName      = "/proto.LoansService/ListVehicles"
-	LoansService_Calculate_FullMethodName         = "/proto.LoansService/Calculate"
-	LoansService_GetLoan_FullMethodName           = "/proto.LoansService/GetLoan"
-	LoansService_ListLoans_FullMethodName         = "/proto.LoansService/ListLoans"
-	LoansService_CreatePayment_FullMethodName     = "/proto.LoansService/CreatePayment"
-	LoansService_ListPayments_FullMethodName      = "/proto.LoansService/ListPayments"
+	LoansService_CreateApplication_FullMethodName = "/loanpb.LoansService/CreateApplication"
+	LoansService_GetApplication_FullMethodName    = "/loanpb.LoansService/GetApplication"
+	LoansService_ListApplications_FullMethodName  = "/loanpb.LoansService/ListApplications"
+	LoansService_ListVehicles_FullMethodName      = "/loanpb.LoansService/ListVehicles"
+	LoansService_Calculate_FullMethodName         = "/loanpb.LoansService/Calculate"
+	LoansService_GetLoan_FullMethodName           = "/loanpb.LoansService/GetLoan"
+	LoansService_ListLoans_FullMethodName         = "/loanpb.LoansService/ListLoans"
+	LoansService_ListPayments_FullMethodName      = "/loanpb.LoansService/ListPayments"
 )
 
 // LoansServiceClient is the client API for LoansService service.
@@ -46,7 +45,6 @@ type LoansServiceClient interface {
 	GetLoan(ctx context.Context, in *GetLoanRequest, opts ...grpc.CallOption) (*GetLoanResponse, error)
 	ListLoans(ctx context.Context, in *ListLoansRequest, opts ...grpc.CallOption) (*ListLoansResponse, error)
 	// Payments
-	CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error)
 	ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error)
 }
 
@@ -128,16 +126,6 @@ func (c *loansServiceClient) ListLoans(ctx context.Context, in *ListLoansRequest
 	return out, nil
 }
 
-func (c *loansServiceClient) CreatePayment(ctx context.Context, in *CreatePaymentRequest, opts ...grpc.CallOption) (*CreatePaymentResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreatePaymentResponse)
-	err := c.cc.Invoke(ctx, LoansService_CreatePayment_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *loansServiceClient) ListPayments(ctx context.Context, in *ListPaymentsRequest, opts ...grpc.CallOption) (*ListPaymentsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPaymentsResponse)
@@ -164,7 +152,6 @@ type LoansServiceServer interface {
 	GetLoan(context.Context, *GetLoanRequest) (*GetLoanResponse, error)
 	ListLoans(context.Context, *ListLoansRequest) (*ListLoansResponse, error)
 	// Payments
-	CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error)
 	ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error)
 	mustEmbedUnimplementedLoansServiceServer()
 }
@@ -196,9 +183,6 @@ func (UnimplementedLoansServiceServer) GetLoan(context.Context, *GetLoanRequest)
 }
 func (UnimplementedLoansServiceServer) ListLoans(context.Context, *ListLoansRequest) (*ListLoansResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListLoans not implemented")
-}
-func (UnimplementedLoansServiceServer) CreatePayment(context.Context, *CreatePaymentRequest) (*CreatePaymentResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePayment not implemented")
 }
 func (UnimplementedLoansServiceServer) ListPayments(context.Context, *ListPaymentsRequest) (*ListPaymentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPayments not implemented")
@@ -350,24 +334,6 @@ func _LoansService_ListLoans_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LoansService_CreatePayment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePaymentRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LoansServiceServer).CreatePayment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: LoansService_CreatePayment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LoansServiceServer).CreatePayment(ctx, req.(*CreatePaymentRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _LoansService_ListPayments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListPaymentsRequest)
 	if err := dec(in); err != nil {
@@ -390,7 +356,7 @@ func _LoansService_ListPayments_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var LoansService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.LoansService",
+	ServiceName: "loanpb.LoansService",
 	HandlerType: (*LoansServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -422,14 +388,10 @@ var LoansService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _LoansService_ListLoans_Handler,
 		},
 		{
-			MethodName: "CreatePayment",
-			Handler:    _LoansService_CreatePayment_Handler,
-		},
-		{
 			MethodName: "ListPayments",
 			Handler:    _LoansService_ListPayments_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/proto/loan_service.proto",
+	Metadata: "internal/proto/loan/loan_service.proto",
 }

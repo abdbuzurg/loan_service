@@ -1,5 +1,6 @@
 # --- minimal config -----------------------------------------------------------
-PROTO            ?= internal/proto/loan_service.proto
+PROTO_DIRS       := internal/proto/loan internal/proto/payment
+PROTO_FILES 		 := $(foreach dir,$(PROTO_DIRS),$(wildcard $(dir)/*.proto))
 MIGRATIONS_DIR   ?= internal/platform/database/migrations
 DB_DSN           ?= postgres://postgres:password@localhost:5432/asr_leasing?sslmode=disable
 
@@ -13,7 +14,7 @@ proto:
 	$(PROTOC) -I . \
 		--go_out=. --go_opt=paths=source_relative \
 		--go-grpc_out=. --go-grpc_opt=paths=source_relative \
-		$(PROTO)
+		$(PROTO_FILES)
 
 # --- sqlc generation ----------------------------------------------------------
 .PHONY: sqlc

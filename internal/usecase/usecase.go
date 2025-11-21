@@ -8,15 +8,15 @@ import (
 )
 
 type LoanUsecase struct {
-	queries          repository.Queries
-	asrLeasingClient clients.AsrLeasingClient
-	koinotAutoClient clients.KoinotAutoClient
+	queries          *repository.Queries
+	asrLeasingClient *clients.AsrLeasingClient
+	koinotAutoClient *clients.KoinotAutoClient
 }
 
 func New(
-	queries repository.Queries,
-	asrLeasingClient clients.AsrLeasingClient,
-	koinotAutoClient clients.KoinotAutoClient,
+	queries *repository.Queries,
+	asrLeasingClient *clients.AsrLeasingClient,
+	koinotAutoClient *clients.KoinotAutoClient,
 ) *LoanUsecase {
 	return &LoanUsecase{
 		queries:          queries,

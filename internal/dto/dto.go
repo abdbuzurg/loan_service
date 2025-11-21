@@ -3,21 +3,21 @@ package dto
 import "time"
 
 type LoanApplication struct {
-	Id             int64     `url:"id"`
-	UserId         int64     `url:"userId"`
-	Type           string    `url:"type"`
-	VehicleVin     string    `url:"vehicleVin"`
-	VehicleName    string    `url:"vehicleName"`
-	CurrencyCode   string    `url:"currencyCode"`
-	Price          int64     `url:"price"`
-	DownPayment    int64     `url:"downPayment"`
-	NetPrice       int64     `url:"netPrice"`
-	MarginRate     float64   `url:"marginRate"`
-	TermMonths     int32     `url:"termMonths"`
-	MonthlyPayment int64     `url:"monthlyPayment"`
-	Status         string    `url:"status"`
-	CreatedAt      time.Time `url:"createdAt"`
-	UpdatedAt      time.Time `url:"updatedAt"`
+	Id             int64     `json:"id"`
+	UserId         int64     `json:"userId"`
+	Type           string    `json:"type"`
+	VehicleVin     string    `json:"vehicleVin"`
+	VehicleName    string    `json:"vehicleName"`
+	CurrencyCode   string    `json:"currencyCode"`
+	Price          int64     `json:"price"`
+	DownPayment    int64     `json:"downPayment"`
+	NetPrice       int64     `json:"netPrice"`
+	MarginRate     float64   `json:"marginRate"`
+	TermMonths     int32     `json:"termMonths"`
+	MonthlyPayment int64     `json:"monthlyPayment"`
+	Status         string    `json:"status"`
+	CreatedAt      time.Time `json:"createdAt"`
+	UpdatedAt      time.Time `json:"updatedAt"`
 }
 
 type Loan struct {

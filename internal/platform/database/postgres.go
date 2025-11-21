@@ -3,20 +3,20 @@ package database
 import (
 	"context"
 	"fmt"
+	"loan_service/configs"
 	"log"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/spf13/viper"
 )
 
-func NewPostgresConnection() (*pgxpool.Pool, error) {
+func NewPostgresConnection(cfg configs.DatabaseConfig) (*pgxpool.Pool, error) {
 	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
-		viper.GetString("postgresql.host"),
-		viper.GetString("postgresql.port"),
-		viper.GetString("postgresql.user"),
-		viper.GetString("postgresql.password"),
-		viper.GetString("postgresql.dbname"),
-		viper.GetString("postgresql.sslmode"),
+		cfg.Host,
+		cfg.Port,
+		cfg.User,
+		cfg.Password,
+		cfg.DBName,
+		cfg.SSLMode,
 	)
 
 	pool, err := pgxpool.New(context.Background(), connStr)

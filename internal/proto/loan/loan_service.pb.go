@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.21.12
-// source: internal/proto/loan_service.proto
+// source: internal/proto/loan/loan_service.proto
 
-package proto
+package loanpb
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -31,7 +31,7 @@ type LoanServiceError struct {
 
 func (x *LoanServiceError) Reset() {
 	*x = LoanServiceError{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[0]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +43,7 @@ func (x *LoanServiceError) String() string {
 func (*LoanServiceError) ProtoMessage() {}
 
 func (x *LoanServiceError) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[0]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +56,7 @@ func (x *LoanServiceError) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoanServiceError.ProtoReflect.Descriptor instead.
 func (*LoanServiceError) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{0}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *LoanServiceError) GetCode() int32 {
@@ -89,7 +89,7 @@ type Vehicle struct {
 
 func (x *Vehicle) Reset() {
 	*x = Vehicle{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[1]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -101,7 +101,7 @@ func (x *Vehicle) String() string {
 func (*Vehicle) ProtoMessage() {}
 
 func (x *Vehicle) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[1]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -114,7 +114,7 @@ func (x *Vehicle) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Vehicle.ProtoReflect.Descriptor instead.
 func (*Vehicle) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{1}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Vehicle) GetImageUrl() string {
@@ -189,7 +189,7 @@ type LoanApplication struct {
 
 func (x *LoanApplication) Reset() {
 	*x = LoanApplication{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[2]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -201,7 +201,7 @@ func (x *LoanApplication) String() string {
 func (*LoanApplication) ProtoMessage() {}
 
 func (x *LoanApplication) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[2]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +214,7 @@ func (x *LoanApplication) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoanApplication.ProtoReflect.Descriptor instead.
 func (*LoanApplication) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{2}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *LoanApplication) GetId() string {
@@ -341,7 +341,7 @@ type Loan struct {
 
 func (x *Loan) Reset() {
 	*x = Loan{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[3]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -353,7 +353,7 @@ func (x *Loan) String() string {
 func (*Loan) ProtoMessage() {}
 
 func (x *Loan) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[3]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -366,7 +366,7 @@ func (x *Loan) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Loan.ProtoReflect.Descriptor instead.
 func (*Loan) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{3}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Loan) GetId() string {
@@ -463,7 +463,7 @@ type Payment struct {
 
 func (x *Payment) Reset() {
 	*x = Payment{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[4]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -475,7 +475,7 @@ func (x *Payment) String() string {
 func (*Payment) ProtoMessage() {}
 
 func (x *Payment) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[4]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -488,7 +488,7 @@ func (x *Payment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Payment.ProtoReflect.Descriptor instead.
 func (*Payment) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{4}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Payment) GetId() string {
@@ -564,7 +564,7 @@ type PageRequest struct {
 
 func (x *PageRequest) Reset() {
 	*x = PageRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[5]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -576,7 +576,7 @@ func (x *PageRequest) String() string {
 func (*PageRequest) ProtoMessage() {}
 
 func (x *PageRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[5]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -589,7 +589,7 @@ func (x *PageRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageRequest.ProtoReflect.Descriptor instead.
 func (*PageRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{5}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PageRequest) GetPage() int32 {
@@ -618,7 +618,7 @@ type PageResponse struct {
 
 func (x *PageResponse) Reset() {
 	*x = PageResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[6]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -630,7 +630,7 @@ func (x *PageResponse) String() string {
 func (*PageResponse) ProtoMessage() {}
 
 func (x *PageResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[6]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -643,7 +643,7 @@ func (x *PageResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageResponse.ProtoReflect.Descriptor instead.
 func (*PageResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{6}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PageResponse) GetCurrentPage() int32 {
@@ -694,7 +694,7 @@ type CreateApplicationRequest struct {
 
 func (x *CreateApplicationRequest) Reset() {
 	*x = CreateApplicationRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[7]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -706,7 +706,7 @@ func (x *CreateApplicationRequest) String() string {
 func (*CreateApplicationRequest) ProtoMessage() {}
 
 func (x *CreateApplicationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[7]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -719,7 +719,7 @@ func (x *CreateApplicationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateApplicationRequest.ProtoReflect.Descriptor instead.
 func (*CreateApplicationRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{7}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateApplicationRequest) GetUserId() string {
@@ -809,7 +809,7 @@ type CreateApplicationResponse struct {
 
 func (x *CreateApplicationResponse) Reset() {
 	*x = CreateApplicationResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[8]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -821,7 +821,7 @@ func (x *CreateApplicationResponse) String() string {
 func (*CreateApplicationResponse) ProtoMessage() {}
 
 func (x *CreateApplicationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[8]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -834,7 +834,7 @@ func (x *CreateApplicationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateApplicationResponse.ProtoReflect.Descriptor instead.
 func (*CreateApplicationResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{8}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateApplicationResponse) GetApplication() *LoanApplication {
@@ -860,7 +860,7 @@ type GetApplicationRequest struct {
 
 func (x *GetApplicationRequest) Reset() {
 	*x = GetApplicationRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[9]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -872,7 +872,7 @@ func (x *GetApplicationRequest) String() string {
 func (*GetApplicationRequest) ProtoMessage() {}
 
 func (x *GetApplicationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[9]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -885,7 +885,7 @@ func (x *GetApplicationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetApplicationRequest.ProtoReflect.Descriptor instead.
 func (*GetApplicationRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{9}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetApplicationRequest) GetId() string {
@@ -905,7 +905,7 @@ type GetApplicationResponse struct {
 
 func (x *GetApplicationResponse) Reset() {
 	*x = GetApplicationResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[10]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -917,7 +917,7 @@ func (x *GetApplicationResponse) String() string {
 func (*GetApplicationResponse) ProtoMessage() {}
 
 func (x *GetApplicationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[10]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -930,7 +930,7 @@ func (x *GetApplicationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetApplicationResponse.ProtoReflect.Descriptor instead.
 func (*GetApplicationResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{10}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetApplicationResponse) GetApplication() *LoanApplication {
@@ -957,7 +957,7 @@ type ListApplicationsRequest struct {
 
 func (x *ListApplicationsRequest) Reset() {
 	*x = ListApplicationsRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[11]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -969,7 +969,7 @@ func (x *ListApplicationsRequest) String() string {
 func (*ListApplicationsRequest) ProtoMessage() {}
 
 func (x *ListApplicationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[11]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -982,7 +982,7 @@ func (x *ListApplicationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListApplicationsRequest.ProtoReflect.Descriptor instead.
 func (*ListApplicationsRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{11}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListApplicationsRequest) GetUserId() string {
@@ -1010,7 +1010,7 @@ type ListApplicationsResponse struct {
 
 func (x *ListApplicationsResponse) Reset() {
 	*x = ListApplicationsResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[12]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1022,7 +1022,7 @@ func (x *ListApplicationsResponse) String() string {
 func (*ListApplicationsResponse) ProtoMessage() {}
 
 func (x *ListApplicationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[12]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1035,7 +1035,7 @@ func (x *ListApplicationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListApplicationsResponse.ProtoReflect.Descriptor instead.
 func (*ListApplicationsResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{12}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListApplicationsResponse) GetApplications() []*LoanApplication {
@@ -1067,7 +1067,7 @@ type ListVehiclesRequest struct {
 
 func (x *ListVehiclesRequest) Reset() {
 	*x = ListVehiclesRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[13]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1079,7 +1079,7 @@ func (x *ListVehiclesRequest) String() string {
 func (*ListVehiclesRequest) ProtoMessage() {}
 
 func (x *ListVehiclesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[13]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1092,7 +1092,7 @@ func (x *ListVehiclesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVehiclesRequest.ProtoReflect.Descriptor instead.
 func (*ListVehiclesRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{13}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{13}
 }
 
 type ListVehiclesResponse struct {
@@ -1105,7 +1105,7 @@ type ListVehiclesResponse struct {
 
 func (x *ListVehiclesResponse) Reset() {
 	*x = ListVehiclesResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[14]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1117,7 +1117,7 @@ func (x *ListVehiclesResponse) String() string {
 func (*ListVehiclesResponse) ProtoMessage() {}
 
 func (x *ListVehiclesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[14]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1130,7 +1130,7 @@ func (x *ListVehiclesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVehiclesResponse.ProtoReflect.Descriptor instead.
 func (*ListVehiclesResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{14}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListVehiclesResponse) GetVehicles() []*Vehicle {
@@ -1161,7 +1161,7 @@ type CalculateRequest struct {
 
 func (x *CalculateRequest) Reset() {
 	*x = CalculateRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[15]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1173,7 +1173,7 @@ func (x *CalculateRequest) String() string {
 func (*CalculateRequest) ProtoMessage() {}
 
 func (x *CalculateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[15]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1186,7 +1186,7 @@ func (x *CalculateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalculateRequest.ProtoReflect.Descriptor instead.
 func (*CalculateRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{15}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CalculateRequest) GetCurrencyCode() string {
@@ -1236,7 +1236,7 @@ type CalculateResponse struct {
 
 func (x *CalculateResponse) Reset() {
 	*x = CalculateResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[16]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1248,7 +1248,7 @@ func (x *CalculateResponse) String() string {
 func (*CalculateResponse) ProtoMessage() {}
 
 func (x *CalculateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[16]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1261,7 +1261,7 @@ func (x *CalculateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalculateResponse.ProtoReflect.Descriptor instead.
 func (*CalculateResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{16}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CalculateResponse) GetNetPrice() int64 {
@@ -1302,7 +1302,7 @@ type GetLoanRequest struct {
 
 func (x *GetLoanRequest) Reset() {
 	*x = GetLoanRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[17]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1314,7 +1314,7 @@ func (x *GetLoanRequest) String() string {
 func (*GetLoanRequest) ProtoMessage() {}
 
 func (x *GetLoanRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[17]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1327,7 +1327,7 @@ func (x *GetLoanRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLoanRequest.ProtoReflect.Descriptor instead.
 func (*GetLoanRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{17}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetLoanRequest) GetId() string {
@@ -1347,7 +1347,7 @@ type GetLoanResponse struct {
 
 func (x *GetLoanResponse) Reset() {
 	*x = GetLoanResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[18]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1359,7 +1359,7 @@ func (x *GetLoanResponse) String() string {
 func (*GetLoanResponse) ProtoMessage() {}
 
 func (x *GetLoanResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[18]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1372,7 +1372,7 @@ func (x *GetLoanResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLoanResponse.ProtoReflect.Descriptor instead.
 func (*GetLoanResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{18}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetLoanResponse) GetLoan() *Loan {
@@ -1399,7 +1399,7 @@ type ListLoansRequest struct {
 
 func (x *ListLoansRequest) Reset() {
 	*x = ListLoansRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[19]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1411,7 +1411,7 @@ func (x *ListLoansRequest) String() string {
 func (*ListLoansRequest) ProtoMessage() {}
 
 func (x *ListLoansRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[19]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1424,7 +1424,7 @@ func (x *ListLoansRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLoansRequest.ProtoReflect.Descriptor instead.
 func (*ListLoansRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{19}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ListLoansRequest) GetUserId() string {
@@ -1452,7 +1452,7 @@ type ListLoansResponse struct {
 
 func (x *ListLoansResponse) Reset() {
 	*x = ListLoansResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[20]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1464,7 +1464,7 @@ func (x *ListLoansResponse) String() string {
 func (*ListLoansResponse) ProtoMessage() {}
 
 func (x *ListLoansResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[20]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1477,7 +1477,7 @@ func (x *ListLoansResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListLoansResponse.ProtoReflect.Descriptor instead.
 func (*ListLoansResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{20}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ListLoansResponse) GetLoans() []*Loan {
@@ -1502,126 +1502,6 @@ func (x *ListLoansResponse) GetLoanServiceError() *LoanServiceError {
 }
 
 // Payments
-type CreatePaymentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LoanId        string                 `protobuf:"bytes,1,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
-	CurrencyCode  string                 `protobuf:"bytes,2,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
-	Amount        int64                  `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	Method        string                 `protobuf:"bytes,4,opt,name=method,proto3" json:"method,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreatePaymentRequest) Reset() {
-	*x = CreatePaymentRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreatePaymentRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreatePaymentRequest) ProtoMessage() {}
-
-func (x *CreatePaymentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreatePaymentRequest.ProtoReflect.Descriptor instead.
-func (*CreatePaymentRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *CreatePaymentRequest) GetLoanId() string {
-	if x != nil {
-		return x.LoanId
-	}
-	return ""
-}
-
-func (x *CreatePaymentRequest) GetCurrencyCode() string {
-	if x != nil {
-		return x.CurrencyCode
-	}
-	return ""
-}
-
-func (x *CreatePaymentRequest) GetAmount() int64 {
-	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
-func (x *CreatePaymentRequest) GetMethod() string {
-	if x != nil {
-		return x.Method
-	}
-	return ""
-}
-
-type CreatePaymentResponse struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Payment          *Payment               `protobuf:"bytes,1,opt,name=payment,proto3" json:"payment,omitempty"`
-	LoanServiceError *LoanServiceError      `protobuf:"bytes,100,opt,name=loan_service_error,json=loanServiceError,proto3" json:"loan_service_error,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
-}
-
-func (x *CreatePaymentResponse) Reset() {
-	*x = CreatePaymentResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreatePaymentResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreatePaymentResponse) ProtoMessage() {}
-
-func (x *CreatePaymentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreatePaymentResponse.ProtoReflect.Descriptor instead.
-func (*CreatePaymentResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *CreatePaymentResponse) GetPayment() *Payment {
-	if x != nil {
-		return x.Payment
-	}
-	return nil
-}
-
-func (x *CreatePaymentResponse) GetLoanServiceError() *LoanServiceError {
-	if x != nil {
-		return x.LoanServiceError
-	}
-	return nil
-}
-
 type ListPaymentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	LoanId        string                 `protobuf:"bytes,1,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
@@ -1632,7 +1512,7 @@ type ListPaymentsRequest struct {
 
 func (x *ListPaymentsRequest) Reset() {
 	*x = ListPaymentsRequest{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[23]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1644,7 +1524,7 @@ func (x *ListPaymentsRequest) String() string {
 func (*ListPaymentsRequest) ProtoMessage() {}
 
 func (x *ListPaymentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[23]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1657,7 +1537,7 @@ func (x *ListPaymentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPaymentsRequest.ProtoReflect.Descriptor instead.
 func (*ListPaymentsRequest) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{23}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListPaymentsRequest) GetLoanId() string {
@@ -1685,7 +1565,7 @@ type ListPaymentsResponse struct {
 
 func (x *ListPaymentsResponse) Reset() {
 	*x = ListPaymentsResponse{}
-	mi := &file_internal_proto_loan_service_proto_msgTypes[24]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1697,7 +1577,7 @@ func (x *ListPaymentsResponse) String() string {
 func (*ListPaymentsResponse) ProtoMessage() {}
 
 func (x *ListPaymentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_proto_loan_service_proto_msgTypes[24]
+	mi := &file_internal_proto_loan_loan_service_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1710,7 +1590,7 @@ func (x *ListPaymentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPaymentsResponse.ProtoReflect.Descriptor instead.
 func (*ListPaymentsResponse) Descriptor() ([]byte, []int) {
-	return file_internal_proto_loan_service_proto_rawDescGZIP(), []int{24}
+	return file_internal_proto_loan_loan_service_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ListPaymentsResponse) GetPayments() []*Payment {
@@ -1734,11 +1614,11 @@ func (x *ListPaymentsResponse) GetLoanServiceError() *LoanServiceError {
 	return nil
 }
 
-var File_internal_proto_loan_service_proto protoreflect.FileDescriptor
+var File_internal_proto_loan_loan_service_proto protoreflect.FileDescriptor
 
-const file_internal_proto_loan_service_proto_rawDesc = "" +
+const file_internal_proto_loan_loan_service_proto_rawDesc = "" +
 	"\n" +
-	"!internal/proto/loan_service.proto\x12\x05proto\"H\n" +
+	"&internal/proto/loan/loan_service.proto\x12\x06loanpb\"H\n" +
 	"\x10LoanServiceError\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\x05R\x04code\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\"\xce\x01\n" +
@@ -1825,26 +1705,26 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"marginRate\x12\x1b\n" +
 	"\tnet_price\x18\n" +
 	" \x01(\x03R\bnetPrice\x12'\n" +
-	"\x0fmonthly_payment\x18\v \x01(\x03R\x0emonthlyPayment\"\x9c\x01\n" +
-	"\x19CreateApplicationResponse\x128\n" +
-	"\vapplication\x18\x01 \x01(\v2\x16.proto.LoanApplicationR\vapplication\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"'\n" +
+	"\x0fmonthly_payment\x18\v \x01(\x03R\x0emonthlyPayment\"\x9e\x01\n" +
+	"\x19CreateApplicationResponse\x129\n" +
+	"\vapplication\x18\x01 \x01(\v2\x17.loanpb.LoanApplicationR\vapplication\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"'\n" +
 	"\x15GetApplicationRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x99\x01\n" +
-	"\x16GetApplicationResponse\x128\n" +
-	"\vapplication\x18\x01 \x01(\v2\x16.proto.LoanApplicationR\vapplication\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"Z\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x9b\x01\n" +
+	"\x16GetApplicationResponse\x129\n" +
+	"\vapplication\x18\x01 \x01(\v2\x17.loanpb.LoanApplicationR\vapplication\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"[\n" +
 	"\x17ListApplicationsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12&\n" +
-	"\x04page\x18\x02 \x01(\v2\x12.proto.PageRequestR\x04page\"\xc6\x01\n" +
-	"\x18ListApplicationsResponse\x12:\n" +
-	"\fapplications\x18\x01 \x03(\v2\x16.proto.LoanApplicationR\fapplications\x12'\n" +
-	"\x04page\x18\x02 \x01(\v2\x13.proto.PageResponseR\x04page\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\x15\n" +
-	"\x13ListVehiclesRequest\"\x89\x01\n" +
-	"\x14ListVehiclesResponse\x12*\n" +
-	"\bvehicles\x18\x01 \x03(\v2\x0e.proto.VehicleR\bvehicles\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\xb2\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12'\n" +
+	"\x04page\x18\x02 \x01(\v2\x13.loanpb.PageRequestR\x04page\"\xc9\x01\n" +
+	"\x18ListApplicationsResponse\x12;\n" +
+	"\fapplications\x18\x01 \x03(\v2\x17.loanpb.LoanApplicationR\fapplications\x12(\n" +
+	"\x04page\x18\x02 \x01(\v2\x14.loanpb.PageResponseR\x04page\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"\x15\n" +
+	"\x13ListVehiclesRequest\"\x8b\x01\n" +
+	"\x14ListVehiclesResponse\x12+\n" +
+	"\bvehicles\x18\x01 \x03(\v2\x0f.loanpb.VehicleR\bvehicles\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"\xb2\x01\n" +
 	"\x10CalculateRequest\x12#\n" +
 	"\rcurrency_code\x18\x01 \x01(\tR\fcurrencyCode\x12\x14\n" +
 	"\x05price\x18\x02 \x01(\x03R\x05price\x12!\n" +
@@ -1852,159 +1732,144 @@ const file_internal_proto_loan_service_proto_rawDesc = "" +
 	"\vterm_months\x18\x04 \x01(\x05R\n" +
 	"termMonths\x12\x1f\n" +
 	"\vmargin_rate\x18\x05 \x01(\x01R\n" +
-	"marginRate\"\xc3\x01\n" +
+	"marginRate\"\xc4\x01\n" +
 	"\x11CalculateResponse\x12\x1b\n" +
 	"\tnet_price\x18\x01 \x01(\x03R\bnetPrice\x12'\n" +
 	"\x0fmonthly_payment\x18\x02 \x01(\x03R\x0emonthlyPayment\x12!\n" +
-	"\ftotal_amount\x18\x03 \x01(\x03R\vtotalAmount\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\" \n" +
+	"\ftotal_amount\x18\x03 \x01(\x03R\vtotalAmount\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\" \n" +
 	"\x0eGetLoanRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"y\n" +
-	"\x0fGetLoanResponse\x12\x1f\n" +
-	"\x04loan\x18\x01 \x01(\v2\v.proto.LoanR\x04loan\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"S\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"{\n" +
+	"\x0fGetLoanResponse\x12 \n" +
+	"\x04loan\x18\x01 \x01(\v2\f.loanpb.LoanR\x04loan\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"T\n" +
 	"\x10ListLoansRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12&\n" +
-	"\x04page\x18\x02 \x01(\v2\x12.proto.PageRequestR\x04page\"\xa6\x01\n" +
-	"\x11ListLoansResponse\x12!\n" +
-	"\x05loans\x18\x01 \x03(\v2\v.proto.LoanR\x05loans\x12'\n" +
-	"\x04page\x18\x02 \x01(\v2\x13.proto.PageResponseR\x04page\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"\x84\x01\n" +
-	"\x14CreatePaymentRequest\x12\x17\n" +
-	"\aloan_id\x18\x01 \x01(\tR\x06loanId\x12#\n" +
-	"\rcurrency_code\x18\x02 \x01(\tR\fcurrencyCode\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x03R\x06amount\x12\x16\n" +
-	"\x06method\x18\x04 \x01(\tR\x06method\"\x88\x01\n" +
-	"\x15CreatePaymentResponse\x12(\n" +
-	"\apayment\x18\x01 \x01(\v2\x0e.proto.PaymentR\apayment\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError\"V\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12'\n" +
+	"\x04page\x18\x02 \x01(\v2\x13.loanpb.PageRequestR\x04page\"\xa9\x01\n" +
+	"\x11ListLoansResponse\x12\"\n" +
+	"\x05loans\x18\x01 \x03(\v2\f.loanpb.LoanR\x05loans\x12(\n" +
+	"\x04page\x18\x02 \x01(\v2\x14.loanpb.PageResponseR\x04page\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError\"W\n" +
 	"\x13ListPaymentsRequest\x12\x17\n" +
-	"\aloan_id\x18\x01 \x01(\tR\x06loanId\x12&\n" +
-	"\x04page\x18\x02 \x01(\v2\x12.proto.PageRequestR\x04page\"\xb2\x01\n" +
-	"\x14ListPaymentsResponse\x12*\n" +
-	"\bpayments\x18\x01 \x03(\v2\x0e.proto.PaymentR\bpayments\x12'\n" +
-	"\x04page\x18\x02 \x01(\v2\x13.proto.PageResponseR\x04page\x12E\n" +
-	"\x12loan_service_error\x18d \x01(\v2\x17.proto.LoanServiceErrorR\x10loanServiceError2\xa2\x05\n" +
-	"\fLoansService\x12V\n" +
-	"\x11CreateApplication\x12\x1f.proto.CreateApplicationRequest\x1a .proto.CreateApplicationResponse\x12M\n" +
-	"\x0eGetApplication\x12\x1c.proto.GetApplicationRequest\x1a\x1d.proto.GetApplicationResponse\x12S\n" +
-	"\x10ListApplications\x12\x1e.proto.ListApplicationsRequest\x1a\x1f.proto.ListApplicationsResponse\x12G\n" +
-	"\fListVehicles\x12\x1a.proto.ListVehiclesRequest\x1a\x1b.proto.ListVehiclesResponse\x12>\n" +
-	"\tCalculate\x12\x17.proto.CalculateRequest\x1a\x18.proto.CalculateResponse\x128\n" +
-	"\aGetLoan\x12\x15.proto.GetLoanRequest\x1a\x16.proto.GetLoanResponse\x12>\n" +
-	"\tListLoans\x12\x17.proto.ListLoansRequest\x1a\x18.proto.ListLoansResponse\x12J\n" +
-	"\rCreatePayment\x12\x1b.proto.CreatePaymentRequest\x1a\x1c.proto.CreatePaymentResponse\x12G\n" +
-	"\fListPayments\x12\x1a.proto.ListPaymentsRequest\x1a\x1b.proto.ListPaymentsResponseB\x10Z\x0einternal/protob\x06proto3"
+	"\aloan_id\x18\x01 \x01(\tR\x06loanId\x12'\n" +
+	"\x04page\x18\x02 \x01(\v2\x13.loanpb.PageRequestR\x04page\"\xb5\x01\n" +
+	"\x14ListPaymentsResponse\x12+\n" +
+	"\bpayments\x18\x01 \x03(\v2\x0f.loanpb.PaymentR\bpayments\x12(\n" +
+	"\x04page\x18\x02 \x01(\v2\x14.loanpb.PageResponseR\x04page\x12F\n" +
+	"\x12loan_service_error\x18d \x01(\v2\x18.loanpb.LoanServiceErrorR\x10loanServiceError2\xe6\x04\n" +
+	"\fLoansService\x12X\n" +
+	"\x11CreateApplication\x12 .loanpb.CreateApplicationRequest\x1a!.loanpb.CreateApplicationResponse\x12O\n" +
+	"\x0eGetApplication\x12\x1d.loanpb.GetApplicationRequest\x1a\x1e.loanpb.GetApplicationResponse\x12U\n" +
+	"\x10ListApplications\x12\x1f.loanpb.ListApplicationsRequest\x1a .loanpb.ListApplicationsResponse\x12I\n" +
+	"\fListVehicles\x12\x1b.loanpb.ListVehiclesRequest\x1a\x1c.loanpb.ListVehiclesResponse\x12@\n" +
+	"\tCalculate\x12\x18.loanpb.CalculateRequest\x1a\x19.loanpb.CalculateResponse\x12:\n" +
+	"\aGetLoan\x12\x16.loanpb.GetLoanRequest\x1a\x17.loanpb.GetLoanResponse\x12@\n" +
+	"\tListLoans\x12\x18.loanpb.ListLoansRequest\x1a\x19.loanpb.ListLoansResponse\x12I\n" +
+	"\fListPayments\x12\x1b.loanpb.ListPaymentsRequest\x1a\x1c.loanpb.ListPaymentsResponseB\x17Z\x15internal/proto/loanpbb\x06proto3"
 
 var (
-	file_internal_proto_loan_service_proto_rawDescOnce sync.Once
-	file_internal_proto_loan_service_proto_rawDescData []byte
+	file_internal_proto_loan_loan_service_proto_rawDescOnce sync.Once
+	file_internal_proto_loan_loan_service_proto_rawDescData []byte
 )
 
-func file_internal_proto_loan_service_proto_rawDescGZIP() []byte {
-	file_internal_proto_loan_service_proto_rawDescOnce.Do(func() {
-		file_internal_proto_loan_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_proto_loan_service_proto_rawDesc), len(file_internal_proto_loan_service_proto_rawDesc)))
+func file_internal_proto_loan_loan_service_proto_rawDescGZIP() []byte {
+	file_internal_proto_loan_loan_service_proto_rawDescOnce.Do(func() {
+		file_internal_proto_loan_loan_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_proto_loan_loan_service_proto_rawDesc), len(file_internal_proto_loan_loan_service_proto_rawDesc)))
 	})
-	return file_internal_proto_loan_service_proto_rawDescData
+	return file_internal_proto_loan_loan_service_proto_rawDescData
 }
 
-var file_internal_proto_loan_service_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
-var file_internal_proto_loan_service_proto_goTypes = []any{
-	(*LoanServiceError)(nil),          // 0: proto.LoanServiceError
-	(*Vehicle)(nil),                   // 1: proto.Vehicle
-	(*LoanApplication)(nil),           // 2: proto.LoanApplication
-	(*Loan)(nil),                      // 3: proto.Loan
-	(*Payment)(nil),                   // 4: proto.Payment
-	(*PageRequest)(nil),               // 5: proto.PageRequest
-	(*PageResponse)(nil),              // 6: proto.PageResponse
-	(*CreateApplicationRequest)(nil),  // 7: proto.CreateApplicationRequest
-	(*CreateApplicationResponse)(nil), // 8: proto.CreateApplicationResponse
-	(*GetApplicationRequest)(nil),     // 9: proto.GetApplicationRequest
-	(*GetApplicationResponse)(nil),    // 10: proto.GetApplicationResponse
-	(*ListApplicationsRequest)(nil),   // 11: proto.ListApplicationsRequest
-	(*ListApplicationsResponse)(nil),  // 12: proto.ListApplicationsResponse
-	(*ListVehiclesRequest)(nil),       // 13: proto.ListVehiclesRequest
-	(*ListVehiclesResponse)(nil),      // 14: proto.ListVehiclesResponse
-	(*CalculateRequest)(nil),          // 15: proto.CalculateRequest
-	(*CalculateResponse)(nil),         // 16: proto.CalculateResponse
-	(*GetLoanRequest)(nil),            // 17: proto.GetLoanRequest
-	(*GetLoanResponse)(nil),           // 18: proto.GetLoanResponse
-	(*ListLoansRequest)(nil),          // 19: proto.ListLoansRequest
-	(*ListLoansResponse)(nil),         // 20: proto.ListLoansResponse
-	(*CreatePaymentRequest)(nil),      // 21: proto.CreatePaymentRequest
-	(*CreatePaymentResponse)(nil),     // 22: proto.CreatePaymentResponse
-	(*ListPaymentsRequest)(nil),       // 23: proto.ListPaymentsRequest
-	(*ListPaymentsResponse)(nil),      // 24: proto.ListPaymentsResponse
+var file_internal_proto_loan_loan_service_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_internal_proto_loan_loan_service_proto_goTypes = []any{
+	(*LoanServiceError)(nil),          // 0: loanpb.LoanServiceError
+	(*Vehicle)(nil),                   // 1: loanpb.Vehicle
+	(*LoanApplication)(nil),           // 2: loanpb.LoanApplication
+	(*Loan)(nil),                      // 3: loanpb.Loan
+	(*Payment)(nil),                   // 4: loanpb.Payment
+	(*PageRequest)(nil),               // 5: loanpb.PageRequest
+	(*PageResponse)(nil),              // 6: loanpb.PageResponse
+	(*CreateApplicationRequest)(nil),  // 7: loanpb.CreateApplicationRequest
+	(*CreateApplicationResponse)(nil), // 8: loanpb.CreateApplicationResponse
+	(*GetApplicationRequest)(nil),     // 9: loanpb.GetApplicationRequest
+	(*GetApplicationResponse)(nil),    // 10: loanpb.GetApplicationResponse
+	(*ListApplicationsRequest)(nil),   // 11: loanpb.ListApplicationsRequest
+	(*ListApplicationsResponse)(nil),  // 12: loanpb.ListApplicationsResponse
+	(*ListVehiclesRequest)(nil),       // 13: loanpb.ListVehiclesRequest
+	(*ListVehiclesResponse)(nil),      // 14: loanpb.ListVehiclesResponse
+	(*CalculateRequest)(nil),          // 15: loanpb.CalculateRequest
+	(*CalculateResponse)(nil),         // 16: loanpb.CalculateResponse
+	(*GetLoanRequest)(nil),            // 17: loanpb.GetLoanRequest
+	(*GetLoanResponse)(nil),           // 18: loanpb.GetLoanResponse
+	(*ListLoansRequest)(nil),          // 19: loanpb.ListLoansRequest
+	(*ListLoansResponse)(nil),         // 20: loanpb.ListLoansResponse
+	(*ListPaymentsRequest)(nil),       // 21: loanpb.ListPaymentsRequest
+	(*ListPaymentsResponse)(nil),      // 22: loanpb.ListPaymentsResponse
 }
-var file_internal_proto_loan_service_proto_depIdxs = []int32{
-	2,  // 0: proto.CreateApplicationResponse.application:type_name -> proto.LoanApplication
-	0,  // 1: proto.CreateApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
-	2,  // 2: proto.GetApplicationResponse.application:type_name -> proto.LoanApplication
-	0,  // 3: proto.GetApplicationResponse.loan_service_error:type_name -> proto.LoanServiceError
-	5,  // 4: proto.ListApplicationsRequest.page:type_name -> proto.PageRequest
-	2,  // 5: proto.ListApplicationsResponse.applications:type_name -> proto.LoanApplication
-	6,  // 6: proto.ListApplicationsResponse.page:type_name -> proto.PageResponse
-	0,  // 7: proto.ListApplicationsResponse.loan_service_error:type_name -> proto.LoanServiceError
-	1,  // 8: proto.ListVehiclesResponse.vehicles:type_name -> proto.Vehicle
-	0,  // 9: proto.ListVehiclesResponse.loan_service_error:type_name -> proto.LoanServiceError
-	0,  // 10: proto.CalculateResponse.loan_service_error:type_name -> proto.LoanServiceError
-	3,  // 11: proto.GetLoanResponse.loan:type_name -> proto.Loan
-	0,  // 12: proto.GetLoanResponse.loan_service_error:type_name -> proto.LoanServiceError
-	5,  // 13: proto.ListLoansRequest.page:type_name -> proto.PageRequest
-	3,  // 14: proto.ListLoansResponse.loans:type_name -> proto.Loan
-	6,  // 15: proto.ListLoansResponse.page:type_name -> proto.PageResponse
-	0,  // 16: proto.ListLoansResponse.loan_service_error:type_name -> proto.LoanServiceError
-	4,  // 17: proto.CreatePaymentResponse.payment:type_name -> proto.Payment
-	0,  // 18: proto.CreatePaymentResponse.loan_service_error:type_name -> proto.LoanServiceError
-	5,  // 19: proto.ListPaymentsRequest.page:type_name -> proto.PageRequest
-	4,  // 20: proto.ListPaymentsResponse.payments:type_name -> proto.Payment
-	6,  // 21: proto.ListPaymentsResponse.page:type_name -> proto.PageResponse
-	0,  // 22: proto.ListPaymentsResponse.loan_service_error:type_name -> proto.LoanServiceError
-	7,  // 23: proto.LoansService.CreateApplication:input_type -> proto.CreateApplicationRequest
-	9,  // 24: proto.LoansService.GetApplication:input_type -> proto.GetApplicationRequest
-	11, // 25: proto.LoansService.ListApplications:input_type -> proto.ListApplicationsRequest
-	13, // 26: proto.LoansService.ListVehicles:input_type -> proto.ListVehiclesRequest
-	15, // 27: proto.LoansService.Calculate:input_type -> proto.CalculateRequest
-	17, // 28: proto.LoansService.GetLoan:input_type -> proto.GetLoanRequest
-	19, // 29: proto.LoansService.ListLoans:input_type -> proto.ListLoansRequest
-	21, // 30: proto.LoansService.CreatePayment:input_type -> proto.CreatePaymentRequest
-	23, // 31: proto.LoansService.ListPayments:input_type -> proto.ListPaymentsRequest
-	8,  // 32: proto.LoansService.CreateApplication:output_type -> proto.CreateApplicationResponse
-	10, // 33: proto.LoansService.GetApplication:output_type -> proto.GetApplicationResponse
-	12, // 34: proto.LoansService.ListApplications:output_type -> proto.ListApplicationsResponse
-	14, // 35: proto.LoansService.ListVehicles:output_type -> proto.ListVehiclesResponse
-	16, // 36: proto.LoansService.Calculate:output_type -> proto.CalculateResponse
-	18, // 37: proto.LoansService.GetLoan:output_type -> proto.GetLoanResponse
-	20, // 38: proto.LoansService.ListLoans:output_type -> proto.ListLoansResponse
-	22, // 39: proto.LoansService.CreatePayment:output_type -> proto.CreatePaymentResponse
-	24, // 40: proto.LoansService.ListPayments:output_type -> proto.ListPaymentsResponse
-	32, // [32:41] is the sub-list for method output_type
-	23, // [23:32] is the sub-list for method input_type
-	23, // [23:23] is the sub-list for extension type_name
-	23, // [23:23] is the sub-list for extension extendee
-	0,  // [0:23] is the sub-list for field type_name
+var file_internal_proto_loan_loan_service_proto_depIdxs = []int32{
+	2,  // 0: loanpb.CreateApplicationResponse.application:type_name -> loanpb.LoanApplication
+	0,  // 1: loanpb.CreateApplicationResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	2,  // 2: loanpb.GetApplicationResponse.application:type_name -> loanpb.LoanApplication
+	0,  // 3: loanpb.GetApplicationResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	5,  // 4: loanpb.ListApplicationsRequest.page:type_name -> loanpb.PageRequest
+	2,  // 5: loanpb.ListApplicationsResponse.applications:type_name -> loanpb.LoanApplication
+	6,  // 6: loanpb.ListApplicationsResponse.page:type_name -> loanpb.PageResponse
+	0,  // 7: loanpb.ListApplicationsResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	1,  // 8: loanpb.ListVehiclesResponse.vehicles:type_name -> loanpb.Vehicle
+	0,  // 9: loanpb.ListVehiclesResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	0,  // 10: loanpb.CalculateResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	3,  // 11: loanpb.GetLoanResponse.loan:type_name -> loanpb.Loan
+	0,  // 12: loanpb.GetLoanResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	5,  // 13: loanpb.ListLoansRequest.page:type_name -> loanpb.PageRequest
+	3,  // 14: loanpb.ListLoansResponse.loans:type_name -> loanpb.Loan
+	6,  // 15: loanpb.ListLoansResponse.page:type_name -> loanpb.PageResponse
+	0,  // 16: loanpb.ListLoansResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	5,  // 17: loanpb.ListPaymentsRequest.page:type_name -> loanpb.PageRequest
+	4,  // 18: loanpb.ListPaymentsResponse.payments:type_name -> loanpb.Payment
+	6,  // 19: loanpb.ListPaymentsResponse.page:type_name -> loanpb.PageResponse
+	0,  // 20: loanpb.ListPaymentsResponse.loan_service_error:type_name -> loanpb.LoanServiceError
+	7,  // 21: loanpb.LoansService.CreateApplication:input_type -> loanpb.CreateApplicationRequest
+	9,  // 22: loanpb.LoansService.GetApplication:input_type -> loanpb.GetApplicationRequest
+	11, // 23: loanpb.LoansService.ListApplications:input_type -> loanpb.ListApplicationsRequest
+	13, // 24: loanpb.LoansService.ListVehicles:input_type -> loanpb.ListVehiclesRequest
+	15, // 25: loanpb.LoansService.Calculate:input_type -> loanpb.CalculateRequest
+	17, // 26: loanpb.LoansService.GetLoan:input_type -> loanpb.GetLoanRequest
+	19, // 27: loanpb.LoansService.ListLoans:input_type -> loanpb.ListLoansRequest
+	21, // 28: loanpb.LoansService.ListPayments:input_type -> loanpb.ListPaymentsRequest
+	8,  // 29: loanpb.LoansService.CreateApplication:output_type -> loanpb.CreateApplicationResponse
+	10, // 30: loanpb.LoansService.GetApplication:output_type -> loanpb.GetApplicationResponse
+	12, // 31: loanpb.LoansService.ListApplications:output_type -> loanpb.ListApplicationsResponse
+	14, // 32: loanpb.LoansService.ListVehicles:output_type -> loanpb.ListVehiclesResponse
+	16, // 33: loanpb.LoansService.Calculate:output_type -> loanpb.CalculateResponse
+	18, // 34: loanpb.LoansService.GetLoan:output_type -> loanpb.GetLoanResponse
+	20, // 35: loanpb.LoansService.ListLoans:output_type -> loanpb.ListLoansResponse
+	22, // 36: loanpb.LoansService.ListPayments:output_type -> loanpb.ListPaymentsResponse
+	29, // [29:37] is the sub-list for method output_type
+	21, // [21:29] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
-func init() { file_internal_proto_loan_service_proto_init() }
-func file_internal_proto_loan_service_proto_init() {
-	if File_internal_proto_loan_service_proto != nil {
+func init() { file_internal_proto_loan_loan_service_proto_init() }
+func file_internal_proto_loan_loan_service_proto_init() {
+	if File_internal_proto_loan_loan_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_proto_loan_service_proto_rawDesc), len(file_internal_proto_loan_service_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_proto_loan_loan_service_proto_rawDesc), len(file_internal_proto_loan_loan_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   25,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_internal_proto_loan_service_proto_goTypes,
-		DependencyIndexes: file_internal_proto_loan_service_proto_depIdxs,
-		MessageInfos:      file_internal_proto_loan_service_proto_msgTypes,
+		GoTypes:           file_internal_proto_loan_loan_service_proto_goTypes,
+		DependencyIndexes: file_internal_proto_loan_loan_service_proto_depIdxs,
+		MessageInfos:      file_internal_proto_loan_loan_service_proto_msgTypes,
 	}.Build()
-	File_internal_proto_loan_service_proto = out.File
-	file_internal_proto_loan_service_proto_goTypes = nil
-	file_internal_proto_loan_service_proto_depIdxs = nil
+	File_internal_proto_loan_loan_service_proto = out.File
+	file_internal_proto_loan_loan_service_proto_goTypes = nil
+	file_internal_proto_loan_loan_service_proto_depIdxs = nil
 }

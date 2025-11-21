@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package proto;
+package loanpb;
 
-option go_package = "internal/proto";
+option go_package = "internal/proto/loanpb";
 
 // -------------------- Errors --------------------
 
@@ -160,17 +160,6 @@ message ListLoansResponse {
 }
 
 // Payments
-message CreatePaymentRequest {
-  string loan_id = 1;
-  string currency_code = 2;
-  int64 amount = 3;
-  string method = 4;
-}
-message CreatePaymentResponse {
-  Payment payment = 1;
-  LoanServiceError loan_service_error = 100;
-}
-
 message ListPaymentsRequest {
   string loan_id = 1;
   PageRequest page = 2;
@@ -200,6 +189,5 @@ service LoansService {
   rpc ListLoans(ListLoansRequest) returns (ListLoansResponse);
 
   // Payments
-  rpc CreatePayment(CreatePaymentRequest) returns (CreatePaymentResponse);
   rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }
